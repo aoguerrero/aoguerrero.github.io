@@ -1,45 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <head>
-<title>QR Code Generator</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<script type="text/javascript" src="jquery.min.js"></script>
-<script type="text/javascript" src="qrcode.min.js"></script>
+  <title>QR Generator</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="qrcode.min.js"></script>
 </head>
-<body>
-<textarea id="text" rows="4" cols="50">
-https://wa.me/57
-</textarea>
-<div id="qrcode" style="width:400px; height:400px; margin-top:15px;"></div>
-
-<script type="text/javascript">
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 400,
-	height : 400
-});
-
-function makeCode () {		
-	var elText = document.getElementById("text");
-	
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
-	}
-	
-	qrcode.makeCode(elText.value);
-}
-
-makeCode();
-
-$("#text").
-	on("blur", function () {
-		makeCode();
-	}).
-	on("keydown", function (e) {
-		if (e.keyCode == 13) {
-			makeCode();
-		}
-	});
-</script>
+<body style="font-family: Monospace; font-size: 20px">
+  <textarea id="text" rows="4" cols="50">
+  text
+  </textarea>
+  <div id="qrcode" style="width:400px; height:400px; margin-top:15px;"></div>
+  <script type="text/javascript">
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width : 400,
+    height : 400
+  });
+      function makeCode () {
+    var elText = document.getElementById("text");
+    
+    if (!elText.value) {
+      alert("Input a text");
+      elText.focus();
+      return;
+    }
+    
+    qrcode.makeCode(elText.value);
+  }
+  makeCode();
+  $("#text").
+    on("blur", function () {
+      makeCode();
+    }).
+    on("keydown", function (e) {
+      if (e.keyCode == 13) {
+        makeCode();
+      }
+    });
+  </script>
 </body>
