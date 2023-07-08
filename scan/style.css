@@ -1,21 +1,9 @@
-h1 {
-  text-align: center;
-}
-
-#reader {
-  width: 500px;
-}
-
-.result {
-  background-color: green;
-  color: #fff;
-  padding: 20px;
-}
-
 .row {
   display: flex;
 }
-
+#reader {
+  width: 500px;
+}
 #reader__scan_region {
   background: white;
 }
