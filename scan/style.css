@@ -1,6 +1,9 @@
 .row {
   display: flex;
 }
+#result {
+  padding: 1em;
+}
 #reader {
   width: 500px;
 }
