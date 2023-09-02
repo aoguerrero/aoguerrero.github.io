@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Encrypt/Decrypt</title>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Simple Encrypt/Decrypt</title>
 </head>
 
-<body style="font-family: Monospace; font-size: 20px">
+<body style="font-family: Monospace; font-size: 20px" onload="getUrlParams()">
     Data to Encrypt/Decrypt<br>
     <textarea id="data" cols="25" rows="5" style="font-family: Monospace; font-size: 20px"></textarea><br><br>
     Input Password<br>
@@ -16,6 +17,14 @@
     <input type="button" onclick="decrypt()" value="Decrypt" style="font-family: Monospace; font-size: 20px"><br>
 
     <script>
+        function getUrlParams() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            if(urlParams.get('str')) {
+                document.getElementById("data").value = urlParams.get('str');
+            }
+        }
+        
         function encrypt() {
             let data = document.getElementById("data").value;
             let password = document.getElementById("password").value;
