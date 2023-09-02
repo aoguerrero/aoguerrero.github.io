@@ -32,8 +32,12 @@
             if (password != password2) {
                 alert("Passwords doesn't match!");
             } else {
-                document.getElementById("data").value = CryptoJS.AES.encrypt(data, password);
-            }
+		let encVal = CryptoJS.AES.encrypt(data, password);
+                document.getElementById("data").value = encVal;
+                let urlParams = new URLSearchParams(window.location.search);
+		urlParams.set('str', encVal);
+                window.location.search = urlParams;
+	    }
         }
 
         function decrypt() {
