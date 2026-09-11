@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>PostgreSQL on Windows</title>
+</head>
+<body>
+    <h1>PostgreSQL on Windows</h1>
+    <h2>Installation (no admin required)</h2>
+<ul>
+<li>Download and Extract the ZIP package from:</li>
+</ul>
+<p><a href="https://www.enterprisedb.com/download-postgresql-binaries">https://www.enterprisedb.com/download-postgresql-binaries</a></p>
+<ul>
+<li>
+<p>Create an environment variable named <code>PG_HOME</code> with the path to the extracted files.</p>
+</li>
+<li>
+<p>Update the ´PATH´ environment variable, adding the <code>%PG_HOME%/bin/</code> directory.</p>
+</li>
+<li>
+<p>For the next steps use <strong>Power Shell</strong>.</p>
+</li>
+<li>
+<p>Check the installed version.</p>
+</li>
+</ul>
+<pre><code>postgres -V
+psql -V
+</code></pre>
+<ul>
+<li>Initialize Database</li>
+</ul>
+<pre><code>initdb -D $env:PG_HOME\data --username=postgres --auth=trust -E utf8
+</code></pre>
+<ul>
+<li>Start the Server</li>
+</ul>
+<pre><code>pg_ctl -D $env:PG_HOME\data -l $env:PG_HOME\log.txt start
+</code></pre>
+<ul>
+<li>
+<p>Start <strong>pgAdmin</strong> with <code>&quot;$env:PG_HOME/pgAdmin 4/runtime/pgAdmin4.exe&quot;</code>, register the local database and check the binary paths for Advanced Utilties in File &gt; Preferences &gt; Paths &gt; Binary paths</p>
+</li>
+<li>
+<p>Configure database, users, etc. from pgAdmin</p>
+</li>
+</ul>
+<h2>Additional Commands</h2>
+<ul>
+<li>Stop the database:</li>
+</ul>
+<pre><code>pg_ctl -D $env:PG_HOME\data stop
+</code></pre>
+<ul>
+<li>
+<p>To check if the server is running, use <code>pg_isready</code></p>
+</li>
+<li>
+<p>To avoid</p>
+</li>
+<li>
+<p>Avoid warnings about the code page when starting <code>psql</code> on Windows.</p>
+</li>
+</ul>
+<pre><code>cmd.exe /c chcp 1252
+psql -U &lt;username&gt;
+</code></pre>
+
+    <p>
+        <span class="tag">databases</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/databases.html">Back</a>
+    </p>
+</body>
+</html>

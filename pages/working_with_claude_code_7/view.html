@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 7. Summary</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 7. Summary</h1>
+    <p>Here is your Quick Start Cheat Sheet for mastering Claude Code. Keep this handy as you work!</p>
+<hr />
+<h1>🚀 Claude Code Quick Start Guide</h1>
+<h2>Phase 1: Starting a New Project</h2>
+<ol>
+<li><strong>Create the folder:</strong> <code>mkdir my-project &amp;&amp; cd my-project</code></li>
+<li><strong>Initialize Git (Crucial):</strong> <code>git init</code></li>
+<li><strong>Launch Claude:</strong> <code>claude</code></li>
+<li><strong>Scaffold the project:</strong>
+<ul>
+<li><em>Prompt:</em> &quot;Initialize a project using [Tech Stack] for [Goal]. Create the folder structure, dependencies, and a basic entry point.&quot;</li>
+</ul>
+</li>
+<li><strong>Create <code>CLAUDE.md</code>:</strong>
+<ul>
+<li><em>Prompt:</em> &quot;Create a <code>CLAUDE.md</code> file documenting the tech stack, project structure, commands to run/test, and coding conventions.&quot;</li>
+</ul>
+</li>
+</ol>
+<h2>Phase 2: Managing Context &amp; Memory</h2>
+<ul>
+<li><strong>Curate <code>CLAUDE.md</code>:</strong> Keep it under ~100 lines. Include stack, commands, structure, and rules. Do <em>not</em> paste whole code files in it.</li>
+<li><strong>Use <code>/clear</code> religiously:</strong> Type <code>/clear</code> in the prompt whenever you finish a logical chunk of work and move to a new task. This wipes chat history but keeps project rules.</li>
+<li><strong>Don't paste code:</strong> Tell Claude to read files (e.g., <em>&quot;Look at <code>src/app.js</code> and...&quot;</em>). It saves context space.</li>
+<li><strong>Use <code>.claudeignore</code>:</strong> Ignore <code>node_modules</code>, <code>package-lock.json</code>, logs, and minified files so Claude doesn't read them.</li>
+</ul>
+<h2>Phase 3: Modes &amp; Planning</h2>
+<ul>
+<li><strong>Cycle Modes:</strong> Press <code>Shift + Tab</code> to switch between modes.
+<ul>
+<li><strong>Default:</strong> Asks for permission before every change (Standard).</li>
+<li><strong>Auto-Accept:</strong> Executes automatically (Use for repetitive, low-risk fixes).</li>
+<li><strong>Plan Mode:</strong> Read-only. Claude thinks but cannot touch files.</li>
+</ul>
+</li>
+<li><strong>Modifying Plans:</strong> If you are in Plan Mode and dislike the plan, <em>do not exit</em>. Just talk to Claude: <em>&quot;Modify the plan: use AWS S3 instead of local storage, and update Step 2.&quot;</em> Once perfect, switch to Default Mode and say <em>&quot;Proceed with the plan.&quot;</em></li>
+</ul>
+<h2>Phase 4: Coding, Debugging &amp; Iterating</h2>
+<ul>
+<li><strong>Plan First:</strong> For complex features, say: <em>&quot;Do not write code yet. Outline the architecture and steps.&quot;</em></li>
+<li><strong>Test-Driven:</strong> Ask Claude to write tests <em>first</em>, run them to see failures, then write the code to pass the tests.</li>
+<li><strong>Targeted Fixes:</strong> When fixing bugs, scope the request: <em>&quot;Update <em>only</em> the <code>validate_email</code> function in <code>utils.js</code>. Do not touch the rest of the file.&quot;</em></li>
+<li><strong>Let Claude Debug:</strong> Don't paste terminal errors. Say: <em>&quot;Run <code>npm start</code>, look at the error, and fix the bug causing it.&quot;</em></li>
+<li><strong>The Checkpoint Strategy:</strong>
+<ol>
+<li>Get an &quot;OK&quot; working version.</li>
+<li><strong>Commit it</strong> (<code>git commit -m &quot;draft feature&quot;</code>).</li>
+<li>Ask Claude for the improvements/fixes.</li>
+<li>Review with <em>&quot;Run <code>git diff</code> and check for leftover debug logs or edge cases.&quot;</em></li>
+<li>Commit again, then <code>/clear</code>.</li>
+</ol>
+</li>
+</ul>
+<h2>Phase 5: Automation &amp; &quot;Skills&quot;</h2>
+<ul>
+<li><strong>Custom Slash Commands:</strong> Create <code>.claude/commands/my-command.md</code>.
+<ul>
+<li>Inside, write a prompt template using <code>$ARGUMENTS</code>.</li>
+<li>Run it in Claude Code via <code>/my-command src/file.js</code>.</li>
+</ul>
+</li>
+<li><strong>MCP Servers (External Tools):</strong> Connect Claude to databases or APIs.
+<ul>
+<li><em>Example:</em> <code>claude mcp add postgres npx -y @modelcontextprotocol/server-postgres &quot;postgres://...&quot;</code></li>
+</ul>
+</li>
+<li><strong>Headless Mode:</strong> Use in scripts/CI-CD.
+<ul>
+<li><code>claude -p &quot;Review code in src/ for security vulnerabilities.&quot;</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>🏆 The 4 Golden Rules</h3>
+<ol>
+<li><strong>Git is your Undo Button:</strong> Commit before asking Claude to do major refactors. If it breaks, <code>git checkout .</code>.</li>
+<li><strong>Context is King:</strong> A cluttered context causes hallucinations. <code>/clear</code> often.</li>
+<li><strong>Be the Architect:</strong> Use Plan Mode for big features. Don't let Claude blindly write code without a strategy.</li>
+<li><strong>Pace Claude:</strong> For big tasks, say <em>&quot;Execute Step 1 only&quot;</em> instead of letting it try to build everything at once.</li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

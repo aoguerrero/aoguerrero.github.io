@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Linux Prompt</title>
+</head>
+<body>
+    <h1>Linux Prompt</h1>
+    <p>Value of environment variable <code>PS1</code></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\u</td>
+<td>Inserts the username of the current user</td>
+</tr>
+<tr>
+<td>\h</td>
+<td>Inserts the hostname of the system</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>Inserts the current working directory</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>Inserts the base name of the current working directory</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>Inserts a newline</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>Inserts the current time in 24-hour format (HH:MM:SS)</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>Inserts the current date in the format &quot;Weekday Month Day&quot; (e.g., &quot;Mon Sep 20&quot;)</td>
+</tr>
+<tr>
+<td>$</td>
+<td>Inserts a $ symbol for a regular user or # symbol for the root user</td>
+</tr>
+</tbody>
+</table>
+<p>Example</p>
+<pre><code>export PS1=&quot;\u\$ &quot;
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

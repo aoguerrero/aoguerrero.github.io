@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Install WoeUSB on Debian</title>
+</head>
+<body>
+    <h1>Install WoeUSB on Debian</h1>
+    <p>WoeUSB is a tool to create bootable Windows installers.</p>
+<h2>Installation</h2>
+<pre><code>sudo apt install git p7zip-full python3-pip python3-wxgtk4.0 grub2-common grub-pc-bin parted dosfstools ntfs-3g
+
+sudo pip3 install WoeUSB-ng
+</code></pre>
+<p>To fix error:</p>
+<pre><code>error: externally-managed-environment
+</code></pre>
+<p>Execute:</p>
+<pre><code>sudo mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+</code></pre>
+
+    <p>
+        <span class="tag">linux windows</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$windows.html">Back</a>
+    </p>
+</body>
+</html>

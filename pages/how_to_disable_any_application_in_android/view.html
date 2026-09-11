@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>How to disable any application in Android</title>
+</head>
+<body>
+    <h1>How to disable any application in Android</h1>
+    <p>Access ADB</p>
+<pre><code>adb shell
+</code></pre>
+<p>List installed packages</p>
+<pre><code>pm list packages
+</code></pre>
+<p>Disable specific package</p>
+<pre><code>pm disable-user --user 0 {}
+# or
+pm uninstall -k --user 0 {}
+</code></pre>
+<p>List disabled packages</p>
+<pre><code>pm list packages -d
+</code></pre>
+<p>Enable disabled package</p>
+<pre><code>pm enable {}
+# or
+pm install-existing {}
+</code></pre>
+<p>Use <a href="https://play.google.com/store/apps/details?id=com.cxinventor.file.explorer">Cx Explorer</a> to get the package name of an installed application:</p>
+
+    <p>
+        <span class="tag">android</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/android.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Fedora Notes</title>
+</head>
+<body>
+    <h1>Fedora Notes</h1>
+    <p>Install multimedia codecs and libraries</p>
+<pre><code>sudo dnf group install multimedia
+</code></pre>
+<p>Enable third party respositories</p>
+<pre><code>sudo dnf install fedora-workstation-repositories
+</code></pre>
+<p>Enable Google Chrome repository and Install</p>
+<pre><code>sudo dnf config-manager setopt google-chrome.enabled=1
+sudo dnf install google-chrome-stable
+</code></pre>
+<p>Install additional Desktops Environments</p>
+<pre><code>dnf environment list --available | grep desktop
+dnf install @kde-desktop-environment
+</code></pre>
+<p>Fedora Quick Docs<br />
+<a href="https://docs.fedoraproject.org/en-US/quick-docs/">https://docs.fedoraproject.org/en-US/quick-docs/</a></p>
+<p>Fix codec issues with Firefox</p>
+<pre><code># For intel:
+
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install libavcodec-freeworld --allowerasing
+
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install intel-media-driver --allowerasing
+
+# For AMD:
+
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install libavcodec-freeworld --allowerasing
+
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install mesa-va-drivers-freeworld --allowerasing 
+
+``
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 2. CLAUDE.md</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 2. CLAUDE.md</h1>
+    <p>Here is a complete guide on how to manage <code>CLAUDE.md</code> and optimize your context.</p>
+<hr />
+<h3>1. Why <code>CLAUDE.md</code> is your best friend</h3>
+<p>When you start a session, Claude Code automatically reads <code>CLAUDE.md</code>. Instead of having to paste your project rules, tech stack, and file structure into the chat <em>every single time</em>, Claude just knows it. This saves massive amounts of context space for your actual task.</p>
+<h3>2. How to edit <code>CLAUDE.md</code></h3>
+<p>You have two ways to edit it:</p>
+<ul>
+<li><strong>Method A: Manually (Recommended for structure)</strong>
+Simply open <code>CLAUDE.md</code> in your text editor (VS Code, Vim, etc.) and write it like standard Markdown.</li>
+<li><strong>Method B: Ask Claude (Great for updates)</strong>
+While in Claude Code, you can say: <em>&quot;We just refactored the authentication system to use JWT. Please update <code>CLAUDE.md</code> to reflect this new architecture.&quot;</em> Claude will propose the edits, you approve them, and the memory is updated.</li>
+</ul>
+<h3>3. What to put in <code>CLAUDE.md</code> (and what to leave out)</h3>
+<p>A good <code>CLAUDE.md</code> is concise and directive. Think of it as a cheat sheet for a new developer.</p>
+<p><strong>Include:</strong></p>
+<ul>
+<li><strong>Tech Stack:</strong> &quot;Python 3.11, FastAPI, PostgreSQL, SQLAlchemy.&quot;</li>
+<li><strong>Commands:</strong> How to run, test, and lint. (<code>npm run dev</code>, <code>pytest</code>, <code>npm run lint</code>).</li>
+<li><strong>Architecture/Structure:</strong> A brief tree of important directories.</li>
+<li><strong>Conventions/Rules:</strong> &quot;Always use functional React components. Do not use default exports. Use TypeScript interfaces.&quot;</li>
+<li><strong>Current State:</strong> &quot;We are currently migrating the user auth module. Do not touch the <code>legacy_auth/</code> folder.&quot;</li>
+</ul>
+<p><strong>Do NOT include:</strong></p>
+<ul>
+<li><strong>Huge code blocks:</strong> Don't paste entire files in here. It wastes context.</li>
+<li><strong>Transient info:</strong> Don't put your current specific bug in here (e.g., &quot;Fix the typo on line 45 of app.js&quot;). Put that in the chat prompt.</li>
+<li><strong>Massive READMEs:</strong> Keep it under ~100 lines if possible.</li>
+</ul>
+<h4>Example of a Perfect <code>CLAUDE.md</code>:</h4>
+<pre><code class="language-markdown"># Project: Web Scraper API
+
+## Tech Stack
+- Python 3.11, FastAPI, BeautifulSoup4, Uvicorn
+- Database: SQLite (for now)
+
+## Commands
+- Run server: `uvicorn main:app --reload`
+- Install deps: `pip install -r requirements.txt`
+- Run tests: `pytest`
+
+## Project Structure
+- `/routers` - API route definitions
+- `/scrapers` - BeautifulSoup logic
+- `/models` - Pydantic models
+
+## Coding Conventions
+- Use `async/await` for all routes.
+- Always add type hints to function signatures.
+- Do not create new requirements files; update `requirements.txt` directly.
+</code></pre>
+<hr />
+<h3>4. Other Ways to Keep Context Optimal</h3>
+<p>Aside from <code>CLAUDE.md</code>, here are the golden rules for context management inside the Claude Code CLI:</p>
+<h4>A. Use <code>/clear</code> religiously</h4>
+<p>Claude Code keeps a running history of your conversation. If you have spent 30 minutes fixing a CSS bug, and you now want to write a new database migration, <strong>all that CSS history is still in Claude's context</strong>, slowing it down and distracting it.</p>
+<ul>
+<li><strong>Action:</strong> When you finish a logical chunk of work and are moving to a new task, type <code>/clear</code> in the Claude prompt. This wipes the conversation history. Don't worry, Claude will re-read <code>CLAUDE.md</code> and your files, so it won't forget the project rules—only the irrelevant chat history.</li>
+</ul>
+<h4>B. Let Claude explore, don't paste files</h4>
+<p>A common beginner mistake is copying a file's code from the editor and pasting it into the Claude Code prompt.</p>
+<ul>
+<li><strong>Instead:</strong> Say <em>&quot;Look at <code>src/components/Header.tsx</code> and fix the bug where the logo isn't loading.&quot;</em> Claude will use its tools to open the file, read it, and fix it. This is much more context-efficient than pasting raw text.</li>
+</ul>
+<h4>C. Scope your requests</h4>
+<p>Instead of saying: <em>&quot;Build a user authentication system with login, signup, password reset, and profile editing.&quot;</em>
+Say: <em>&quot;Let's build the user auth system. First, let's just set up the database model and the signup endpoint.&quot;</em>
+Smaller, scoped tasks keep the context focused on one file or module at a time, resulting in fewer errors.</p>
+<h4>D. Rely on your <code>.gitignore</code></h4>
+<p>Claude Code respects <code>.gitignore</code>. If you have massive folders of logs, build artifacts, or dependencies (like <code>node_modules</code> or <code>venv</code>), make sure they are in <code>.gitignore</code>. Claude won't try to read them, which saves context and prevents it from hallucinating based on third-party library code.</p>
+<h3>Summary Checklist for Optimal Context:</h3>
+<ol>
+<li>Write a concise, helpful <code>CLAUDE.md</code> and update it as the project evolves.</li>
+<li>Type <code>/clear</code> between distinct tasks.</li>
+<li>Tell Claude to read files using file paths; don't paste code into the chat.</li>
+<li>Break large features down into smaller, step-by-step prompts.</li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

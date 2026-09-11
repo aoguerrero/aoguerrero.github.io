@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Helix</title>
+</head>
+<body>
+    <h1>Helix</h1>
+    <h2>Basic Usage</h2>
+<table>
+<thead>
+<tr>
+<th>Command / Shortcut</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:open &lt;filename&gt;</code></td>
+<td>Create a new file</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>Create more cursors</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Select current line, and again next line</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Delete character or the current selection</td>
+</tr>
+<tr>
+<td><code>:cd &lt;dir&gt;</code></td>
+<td>Change the current directory</td>
+</tr>
+<tr>
+<td><code>:pwd</code></td>
+<td>Check the current directory</td>
+</tr>
+<tr>
+<td><code>CTRL + x</code></td>
+<td>Trigger auto-complete</td>
+</tr>
+<tr>
+<td>Create a .ignore file</td>
+<td>Exclude files from listing</td>
+</tr>
+<tr>
+<td><code>SPACE</code></td>
+<td>Open command menu</td>
+</tr>
+<tr>
+<td><code>SPACE + f</code></td>
+<td>Open file picker</td>
+</tr>
+</tbody>
+</table>
+<h2>Basic Configuration</h2>
+<p>Use soft wrap, edit <code>config.toml</code> adding</p>
+<pre><code>[editor.soft-wrap]
+enable = true
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>Helix is displayed in black and white</p>
+<p>Force the use of true color, adding to <code>~/.config/helix/config.toml</code></p>
+<pre><code>[editor]
+true-color = true
+</code></pre>
+<h2>Oher configurations</h2>
+<p>Load <code>.editorconfig</code> from project (default true)</p>
+<pre><code>[editor]
+editor-config = true
+</code></pre>
+<p><strong>Other Links</strong></p>
+<p><a href="../java_coding_from_android/view.html">Java coding from the terminal</a></p>
+
+    <p>
+        <span class="tag">linux tools command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$tools$command.html">Back</a>
+    </p>
+</body>
+</html>

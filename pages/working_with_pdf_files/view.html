@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with PDF files</title>
+</head>
+<body>
+    <h1>Working with PDF files</h1>
+    <p><strong>Required tools:</strong> gs (ghostscript), qpdf, pdfseparate, pdftoppm.</p>
+<ul>
+<li>
+<p>Reduce the size of a scanned PDF, the value for &quot;quality&quot; option can be:<br />
+screen,ebook,printer,prepress</p>
+<pre><code>gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/{quality} -dNOPAUSE -dQUIET -dBATCH -sOutputFile={output.pdf} {input.pdf}
+</code></pre>
+</li>
+<li>
+<p>Merge multiple PDF files:</p>
+<pre><code>gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE={output.pdf} -dBATCH {input1.pdf} {input2.pdf}
+</code></pre>
+</li>
+<li>
+<p>Remove password:</p>
+<pre><code>gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sPDFPassword={password} -f -sOutputFile={output.pdf} {input.pdf}
+
+qpdf --password={password} --decrypt {input.pdf} {output.pdf}
+</code></pre>
+</li>
+<li>
+<p>Extract pages from a PDF file:</p>
+<pre><code>pdfseparate -f {first page} -l {last page} {input.pdf} {output.pdf}
+</code></pre>
+</li>
+<li>
+<p>Convert a PDF file to images; define horizontal and vertical DPI to generate the images, 150 is the default value if dpi not specified.</p>
+<pre><code>pdftoppm -png -rx {horizontal dpi} -ry {vertical dpi} {input.pdf} {output prefix}
+
+# If document.pdf has two pages
+
+pdftoppm -png document.pdf img
+
+# Will produce img-1.png, img-2.png
+</code></pre>
+</li>
+</ul>
+
+    <p>
+        <span class="tag">pdf linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/pdf$linux.html">Back</a>
+    </p>
+</body>
+</html>

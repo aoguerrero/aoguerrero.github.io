@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Node Installation on Windows</title>
+</head>
+<body>
+    <h1>Node Installation on Windows</h1>
+    <ul>
+<li>
+<p>Unzip node contents and set environment variable <code>NODE_HOME</code> with the path.</p>
+</li>
+<li>
+<p>Create subdirectories <code>npm-global</code> and <code>npm-cache</code></p>
+</li>
+<li>
+<p>Add <code>%NODE_HOME%</code> and <code>%NODE_HOME%\npm-global</code> to the <code>PATH</code>.</p>
+</li>
+<li>
+<p>Execute:</p>
+</li>
+</ul>
+<pre><code>npm config set prefix &quot;%NODE_HOME%\npm-global&quot;
+npm config set cache &quot;%NODE_HOME%\npm-cache&quot;
+</code></pre>
+<ul>
+<li>Test with:</li>
+</ul>
+<pre><code>npm install -g minify
+</code></pre>
+<ul>
+<li>Check that the module is added to <code>npm-global</code> and that the <code>minify</code> command is available.</li>
+</ul>
+
+    <p>
+        <span class="tag">js</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/js.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>fim</title>
+</head>
+<body>
+    <h1>fim</h1>
+    <p>fim (fbi improved) is an image viewer for framebuffer, it can be used for SBC (like Raspberry PI, LePotato, etc.) photoframes without requiring X Windows.</p>
+<p>Basic usage:</p>
+<pre><code>fim -o fb {image}
+
+fim -c &quot;+25%;align 'bottom';&quot; -o fb {image}
+
+fim -c &quot;align 'center';&quot; -o fb {image}
+
+fim --slideshow 30 --random -R -o fb {directory}
+</code></pre>
+<p>Sample content of the file <code>.fimrc</code> that hides the information displayed at the bottom of the screen:</p>
+<pre><code>_display_status=&quot;&quot;
+</code></pre>
+<p>Key Binding:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q</td>
+<td>Quit</td>
+</tr>
+<tr>
+<td>+/-</td>
+<td>Zoom In/Out</td>
+</tr>
+<tr>
+<td>Cursor keys</td>
+<td>Move view</td>
+</tr>
+</tbody>
+</table>
+<p>Links</p>
+<p><a href="https://forums.raspberrypi.com/viewtopic.php?t=196043">https://forums.raspberrypi.com/viewtopic.php?t=196043</a><br />
+<a href="https://www.nongnu.org/fbi-improved/">https://www.nongnu.org/fbi-improved/</a></p>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

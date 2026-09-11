@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Keep Windows Awake</title>
+</head>
+<body>
+    <h1>Keep Windows Awake</h1>
+    <p>Run</p>
+<pre><code>$wsh = New-Object -ComObject WScript.Shell; while (1) {$wsh.SendKeys('+{F15}'); Start-Sleep -seconds 59}
+
+$wsh = New-Object -ComObject WScript.Shell; while (1) {$wsh.SendKeys('{SCROLLLOCK 2}'); Start-Sleep -seconds 179}
+</code></pre>
+
+    <p>
+        <span class="tag">windows</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 3. Modes</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 3. Modes</h1>
+    <p>In Claude Code, &quot;Modes&quot; refer to the different ways the AI interacts with your file system and terminal. You cycle through these modes using the <strong><code>Shift + Tab</code></strong> keyboard shortcut while in the Claude Code prompt.</p>
+<p>Mastering these modes—and knowing how to negotiate a plan—are crucial for staying in control of your codebase.</p>
+<p>Here is a breakdown of the different modes and how to use them, followed by a guide on modifying plans.</p>
+<hr />
+<h3>1. The Three Interactive Modes</h3>
+<p>As of the latest versions of Claude Code, pressing <code>Shift + Tab</code> cycles you through three primary modes:</p>
+<h4>A. Default Mode (Normal)</h4>
+<ul>
+<li><strong>What it does:</strong> Claude proposes file edits and terminal commands, and <strong>asks for your permission</strong> before executing <em>anything</em>.</li>
+<li><strong>When to use it:</strong> This is your standard, day-to-day mode. Use it when you are working on sensitive parts of your codebase, trying out new libraries, or when you simply want to review every change Claude makes line-by-line.</li>
+</ul>
+<h4>B. Auto-Accept Mode (Fast Mode)</h4>
+<ul>
+<li><strong>What it does:</strong> Claude will automatically execute file edits and terminal commands without asking for your permission. (Note: For safety, it usually still respects <code>.gitignore</code> and won't run blatantly destructive commands like <code>rm -rf /</code> without a warning, but it will write and edit code freely).</li>
+<li><strong>When to use it:</strong> Use this when you are doing repetitive, low-risk tasks. For example, if you ask Claude to &quot;Find all instances of <code>var</code> and change them to <code>let</code> across the project,&quot; you don't want to approve 50 individual file edits. Auto-accept lets Claude rip through the task.</li>
+<li><em>Warning:</em> Always have a clean Git commit before using Auto-Accept so you can easily revert if Claude goes rogue.</li>
+</ul>
+<h4>C. Plan Mode (Architecture Mode)</h4>
+<ul>
+<li><strong>What it does:</strong> In Plan Mode, Claude is <strong>strictly forbidden from modifying files or running commands</strong>. It can only <em>read</em> your codebase, analyze it, and output text. Its sole purpose is to formulate a strategy.</li>
+<li><strong>When to use it:</strong> Use this before starting a new feature, doing a massive refactor, or when debugging a complex architecture issue. It forces Claude to think through the entire problem before writing a single line of code.</li>
+</ul>
+<p><em>(Note: There is also a <strong>Headless Mode</strong> (<code>claude -p &quot;prompt&quot;</code>), which is non-interactive and used for scripts and CI/CD pipelines, as we discussed earlier).</em></p>
+<hr />
+<h3>2. How to Modify a Suggested Plan in Plan Mode</h3>
+<p>If you are in Plan Mode and Claude suggests a plan that you disagree with, <strong>do not accept it and do not toggle back to Default Mode yet.</strong></p>
+<p>Plan Mode is a conversation. You modify the plan simply by talking to Claude and providing feedback. Because Claude hasn't written any code yet, it is very easy for it to adjust its strategy.</p>
+<p>Here is the step-by-step workflow for modifying a plan:</p>
+<h4>Step 1: Identify the flaw in the plan</h4>
+<p>Read through Claude's proposed steps. Maybe it wants to create a new file when you'd rather modify an existing one, or maybe it chose the wrong library.</p>
+<h4>Step 2: Give direct, specific feedback</h4>
+<p>Reply to Claude with exactly what needs to change and <em>why</em>.</p>
+<p><strong>Example of a bad modification prompt:</strong></p>
+<blockquote>
+<p>&quot;No, that's wrong. Try again.&quot; (Too vague, Claude might just guess and repeat the mistake).</p>
+</blockquote>
+<p><strong>Example of a good modification prompt:</strong></p>
+<blockquote>
+<p>&quot;Let's modify this plan. For Step 2, I don't want to create a new <code>auth_helpers.js</code> file. Instead, put those helper functions inside the existing <code>utils/auth.js</code> file. Also, for Step 4, let's use <code>bcrypt</code> instead of <code>argon2</code> for password hashing, as we already have it installed. Update the plan.&quot;</p>
+</blockquote>
+<h4>Step 3: Ask Claude to output the revised plan</h4>
+<p>Claude will read your feedback, rethink the architecture, and output a newly revised plan.
+If you have multiple rounds of changes, just keep chatting until the plan is perfect.</p>
+<h4>Step 4: Execute the approved plan</h4>
+<p>Once you are 100% satisfied with the modified plan, you have two options:</p>
+<ol>
+<li><strong>Toggle out of Plan Mode:</strong> Press <code>Shift + Tab</code> to go back to Default Mode, and say: <em>&quot;The plan looks good. Please execute it step-by-step.&quot;</em></li>
+<li><strong>Execute step-by-step (Best Practice):</strong> Even in Default Mode, tell Claude to pace itself: <em>&quot;Execute Step 1 of the plan only.&quot;</em> Review the code it writes, then say <em>&quot;Great, now execute Step 2.&quot;</em> This prevents Claude from trying to do too much at once and losing context.</li>
+</ol>
+<h3>Summary of the Workflow</h3>
+<ol>
+<li>Press <code>Shift + Tab</code> to enter <strong>Plan Mode</strong>.</li>
+<li>Ask for a plan: <em>&quot;How should we implement the user profile image upload feature?&quot;</em></li>
+<li>Claude outputs a plan.</li>
+<li>You review it and say: <em>&quot;Modify the plan: let's use AWS S3 instead of local storage.&quot;</em></li>
+<li>Claude outputs the revised plan.</li>
+<li>You press <code>Shift + Tab</code> to enter <strong>Default Mode</strong>.</li>
+<li>You say: <em>&quot;Proceed with the plan.&quot;</em></li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

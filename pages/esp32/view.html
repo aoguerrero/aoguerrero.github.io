@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>esp32</title>
+</head>
+<body>
+    <h1>esp32</h1>
+    <h1>T Display</h1>
+<ul>
+<li>
+<p>Web of the original model:</p>
+<p><a href="https://es.aliexpress.com/item/33050639690.html?spm=a2g0o.productlist.main.2.1412b5afKt4gpj&amp;algo_pvid=557a3667-f711-4885-a265-0e8f6dea932b&amp;algo_exp_id=557a3667-f711-4885-a265-0e8f6dea932b-1">https://es.aliexpress.com/item/33050639690.html?spm=a2g0o.productlist.main.2.1412b5afKt4gpj&amp;algo_pvid=557a3667-f711-4885-a265-0e8f6dea932b&amp;algo_exp_id=557a3667-f711-4885-a265-0e8f6dea932b-1</a></p>
+</li>
+<li>
+<p>Github Project:</p>
+<p><a href="https://github.com/Xinyuan-LilyGO/TTGO-T-Display">https://github.com/Xinyuan-LilyGO/TTGO-T-Display</a></p>
+</li>
+<li>
+<p>TFT_eSPI Setup</p>
+<p>Copy <strong>TFT_eSPI</strong> to <code>$HOME/Arduino/libraries</code> from the Github Project (don't use the official release).</p>
+<p>Official Release: <a href="https://github.com/Bodmer/TFT_eSPI">https://github.com/Bodmer/TFT_eSPI</a> (for documentation, examples, etc.)</p>
+</li>
+<li>
+<p>Upload programs</p>
+</li>
+<li>
+<p>Fix problem uploading (due to Linux permissions)</p>
+<pre><code>sudo chmod a+rw /dev/ttyACM0
+</code></pre>
+</li>
+<li>
+<p>Language Reference</p>
+<p>Basic Tutorial<br />
+<a href="https://manual.eg.poly.edu/index.php/Arduino_Coding_Guide">https://manual.eg.poly.edu/index.php/Arduino_Coding_Guide</a></p>
+</li>
+<li>
+<p>Technical Specs</p>
+<p>Resolution: 135x240</p>
+</li>
+<li>
+<p>Examples</p>
+<pre><code>#include &lt;TFT_eSPI.h&gt;
+
+TFT_eSPI tft = TFT_eSPI(135, 240); // Invoke custom library
+
+void setup() {
+tft.init();
+tft.setRotation(1);
+tft.fillScreen(TFT_GREEN);
+}
+
+void loop() {
+}
+</code></pre>
+</li>
+</ul>
+
+    <p>
+        <span class="tag">esp32</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/esp32.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Maven</title>
+</head>
+<body>
+    <h1>Maven</h1>
+    <p>Create an empty java project:</p>
+<pre><code>mvn archetype:generate -DgroupId=com.example -DartifactId=foobar -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+# Under WINDOWS, double quotes are required:
+
+mvn archetype:generate &quot;-DgroupId=com.example&quot; &quot;-DartifactId=foobar&quot; &quot;-DarchetypeArtifactId=maven-archetype-quickstart&quot; &quot;-DinteractiveMode=false&quot;
+
+</code></pre>
+<p>Base project structure</p>
+<pre><code>foobar
+|-- pom.xml
+\-- src
+  |-- main
+  | |-- java
+  | | \-- com
+  | |   \-- example
+  | |     \-- App.java
+  | \-- resources
+  \-- test
+    |-- java
+    | \-- com
+    |   \-- example
+    |     \-- AppTest.java
+    \-- resources
+</code></pre>
+<p>To set the Java Version, modify the pom.xml file and add below the <code>&lt;/name&gt;</code> tag:</p>
+<pre><code>&lt;properties&gt;
+     &lt;maven.compiler.source&gt;17&lt;/maven.compiler.source&gt;
+     &lt;maven.compiler.target&gt;17&lt;/maven.compiler.target&gt;
+&lt;/properties&gt;
+</code></pre>
+<p>Check the dependency tree:</p>
+<pre><code>mvn dependency:tree
+</code></pre>
+<p>Download a copy of the dependencies:</p>
+<pre><code>mvn dependency:copy-dependencies
+</code></pre>
+<p>List unused dependencies:</p>
+<pre><code>mvn dependency:analyze
+</code></pre>
+<p>Build configuration to specify a main class in manifest file, and run the application using <code>exec:java</code></p>
+<pre><code>&lt;build&gt;
+  &lt;finalName&gt;{application name}&lt;/finalName&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+      &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.4.2&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;archive&gt;
+          &lt;manifest&gt;
+            &lt;mainClass&gt;{package and class of your main}&lt;/mainClass&gt;
+            &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+          &lt;/manifest&gt;
+        &lt;/archive&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+      &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+      &lt;version&gt;3.5.1&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;mainClass&gt;{package and class of your main}&lt;/mainClass&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>Dealing with failing / not compiling tests</p>
+<pre><code>mvn clean install -DskipTests -Dmaven.test.skip=true
+</code></pre>
+<p>Print the version of the current project</p>
+<pre><code>mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+</code></pre>
+
+    <p>
+        <span class="tag">java</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/java.html">Back</a>
+    </p>
+</body>
+</html>

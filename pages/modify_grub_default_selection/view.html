@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Modify Grub Default Selection</title>
+</head>
+<body>
+    <h1>Modify Grub Default Selection</h1>
+    <p>Backup GRUB</p>
+<pre><code>sudo cp /etc/default/grub /etc/default/grub.bak
+</code></pre>
+<p>Edit and change the index or name or the default</p>
+<pre><code>GRUB_DEFAULT=0
+</code></pre>
+<p>To view the current entries, check <code>/boot/grub/grub.cfg</code></p>
+<pre><code>menuitem ???
+</code></pre>
+<p>Commit the changes</p>
+<pre><code>sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

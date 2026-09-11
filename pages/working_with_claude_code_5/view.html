@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 5. Skills</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 5. Skills</h1>
+    <p>In Claude Code, the concept of &quot;skills&quot; translates to two powerful features: <strong>Custom Slash Commands</strong> (for repeatable workflows) and <strong>MCP (Model Context Protocol) Servers</strong> (for giving Claude new external tools).</p>
+<p>Here is a guide on when to use them, how to find them, and how to create your own.</p>
+<hr />
+<h3>1. When should you start using them?</h3>
+<p>You don't need them on day one. You should start creating &quot;skills&quot; (custom commands) when you notice <strong>repetition</strong> or <strong>complex multi-step workflows</strong> that you find yourself typing out manually over and over.</p>
+<p><strong>Start using Custom Commands when:</strong></p>
+<ul>
+<li>You keep asking Claude to run the same sequence of actions (e.g., &quot;Run the linter, fix all errors, then run tests&quot;).</li>
+<li>You have a specific way you want code reviewed (e.g., &quot;Review this file for security vulnerabilities, then output a markdown report&quot;).</li>
+<li>You need to generate boilerplate that requires specific project context.</li>
+</ul>
+<p><strong>Start using MCP (External Tools) when:</strong></p>
+<ul>
+<li>You need Claude to interact with outside services (e.g., querying a live PostgreSQL database, fetching issues from Jira/GitHub, or reading Slack messages).</li>
+<li>You want Claude to use an internal CLI tool that isn't in your standard <code>package.json</code>.</li>
+</ul>
+<hr />
+<h3>2. How to explore existing skills (Commands)</h3>
+<p>Claude Code comes with a few built-in commands, and you can view them at any time by typing <code>/</code> in the Claude Code prompt.</p>
+<ul>
+<li><code>/help</code> - Shows general help and available commands.</li>
+<li><code>/clear</code> - Clears the conversation context (as we discussed).</li>
+<li><code>/compact</code> - Summarizes the current conversation to save context window space without losing the thread entirely.</li>
+<li><code>/cost</code> - Shows token usage and API costs for the current session.</li>
+<li><code>/config</code> - Opens configuration settings.</li>
+</ul>
+<p><em>Note: If there are project-specific custom commands, they will also show up in this <code>/</code> autocomplete menu.</em></p>
+<hr />
+<h3>3. How to implement new &quot;Skills&quot; (Custom Slash Commands)</h3>
+<p>Creating custom commands is incredibly easy. They are simply Markdown files stored in a specific directory.</p>
+<h4>Step 1: Create the commands folder</h4>
+<p>You can create commands globally (for all projects) or locally (just for this project).</p>
+<ul>
+<li><strong>Project-specific:</strong> Create a folder named <code>.claude/commands/</code> in your project root.</li>
+<li><strong>Global:</strong> Create a folder named <code>~/.claude/commands/</code> in your home directory.</li>
+</ul>
+<h4>Step 2: Create the Markdown file</h4>
+<p>Inside the <code>commands</code> folder, create a <code>.md</code> file. The name of the file becomes the command name.
+For example, if you want a command called <code>/security-check</code>, create a file named <code>security-check.md</code>.</p>
+<h4>Step 3: Write the prompt</h4>
+<p>Inside <code>security-check.md</code>, write the exact prompt you want Claude to execute. You can use the <code>$ARGUMENTS</code> placeholder to pass variables when you run the command.</p>
+<p><strong>Example <code>security-check.md</code>:</strong></p>
+<pre><code class="language-markdown">Please analyze the following file or directory for security vulnerabilities: $ARGUMENTS
+
+Specifically look for:
+1. SQL Injection risks
+2. XSS vulnerabilities
+3. Hardcoded secrets or API keys
+
+Provide a summary of your findings, and then propose a git diff to fix the most critical issues.
+</code></pre>
+<h4>Step 4: Use your new skill</h4>
+<p>Now, inside Claude Code, you can simply type:
+<code>/security-check src/api/login.py</code></p>
+<p>Claude will automatically load your prompt, replace <code>$ARGUMENTS</code> with <code>src/api/login.py</code>, and execute the complex workflow.</p>
+<hr />
+<h3>4. How to implement new &quot;Skills&quot; (MCP Servers for External Tools)</h3>
+<p>If you want to give Claude the &quot;skill&quot; to query a database or talk to GitHub, you use <strong>MCP (Model Context Protocol)</strong>. MCP is an open standard that lets Claude Code connect to external servers.</p>
+<h4>Step 1: Find or build an MCP Server</h4>
+<p>There are pre-built MCP servers for popular tools (like Postgres, GitHub, Google Drive, Puppeteer). You can find community-made MCP servers on GitHub or the official Anthropic MCP documentation.</p>
+<h4>Step 2: Add the MCP server to Claude Code</h4>
+<p>You can add an MCP server by editing your Claude Code configuration or using the CLI command:</p>
+<pre><code class="language-bash">claude mcp add &lt;name&gt; &lt;command&gt; [args...]
+</code></pre>
+<p><strong>Example: Adding a Postgres MCP Server</strong>
+Let's say you want Claude to be able to query your local database. You would run:</p>
+<pre><code class="language-bash">claude mcp add postgres npx -y @modelcontextprotocol/server-postgres &quot;postgresql://user:password@localhost:5432/mydb&quot;
+</code></pre>
+<h4>Step 3: Use the new skill</h4>
+<p>Once configured, restart Claude Code. Claude will now have access to the <code>postgres</code> MCP server. You can simply ask:
+<em>&quot;Look at the database schema and write a FastAPI route to fetch all users.&quot;</em></p>
+<p>Claude will autonomously use the MCP tool to inspect your database tables, learn the schema, and then write the code based on real, live data.</p>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

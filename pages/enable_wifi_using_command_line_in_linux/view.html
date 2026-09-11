@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Enable Wifi using command line in Linux</title>
+</head>
+<body>
+    <h1>Enable Wifi using command line in Linux</h1>
+    <p>WPA Supplicant is needed!</p>
+<p>Also the interface is needed that can be obtained using <code>iw dev</code></p>
+<pre><code>$ wpa_passphrase myrouter mypassphrase &gt; wpa.conf
+$ wpa_supplicant -Dwext -i{interface name} -c/path/to/wpa.conf
+$ dhclient {interface name}
+</code></pre>
+<p>Resolve DNS problems:</p>
+<ul>
+<li>Remove <code>/etc/resolv.conf</code></li>
+<li>Recreae it with only <code>nameserver 1.1.1.1</code></li>
+<li>Execute <code>sudo systemctl restart systemd-resolved.service</code></li>
+</ul>
+<p>After getting online, better to use <code>nmtui</code></p>
+
+    <p>
+        <span class="tag">linux net</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$net.html">Back</a>
+    </p>
+</body>
+</html>

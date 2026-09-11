@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>tune2fs</title>
+</head>
+<body>
+    <h1>tune2fs</h1>
+    <p>I use this command to change the UUID of a volume to a defined value, so I can easily mount external drives.</p>
+<p>UUID can be something like: <code>77777777-3333-3333-3333-bbbbbbbbbbbb</code></p>
+<pre><code>blkid | grep UUID
+
+umount /dev/sdb1
+
+tune2fs -U &quot;{UUID}&quot;  /dev/sdb1
+</code></pre>
+<p>From the tune2fs man pages:</p>
+<pre><code>-U UUID
+  Set  the  universally unique identifier (UUID) of the filesystem
+  to UUID.  The format of the UUID is a series of hex digits sepa-
+  rated          by          hyphens,          like          this:
+  &quot;c1b9d5a2-f162-11cf-9ece-0020afc76f16&quot;.  The UUID parameter  may
+  also be one of the following:
+
+    clear  clear the filesystem UUID
+    random generate a new randomly-generated UUID
+    time   generate a new time-based UUID
+
+  The  UUID  may  be  used by mount(8), fsck(8), and /etc/fstab(5)
+  (and possibly others) by specifying UUID=uuid instead of a block
+  special device name like /dev/hda1.
+</code></pre>
+
+    <p>
+        <span class="tag">linux command disks</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$disks.html">Back</a>
+    </p>
+</body>
+</html>

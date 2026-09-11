@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Basic HTML</title>
+</head>
+<body>
+    <h1>Basic HTML</h1>
+    <h2>HTML</h2>
+<p>Generic page structure:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;{description of the document}&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;{comma separated keywords}&quot;&gt;
+    &lt;title&gt;{Pate Title}&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{path to style.css}&quot;&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;./favicon.ico&quot; type=&quot;image/x-icon&quot;&gt;
+    &lt;style&gt;
+      {In-page styles}
+    &lt;/style&gt;
+    &lt;script&gt;
+      {In-page javascript}
+    &lt;/script&gt;
+    &lt;script src=&quot;{path to script.js}&quot; {nothing|async|defer}&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main&gt;
+        {Page content}
+    &lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li><strong>async:</strong> Script is executed as soon is downloaded.</li>
+<li><strong>defer:</strong> Script is executed until the complete document is downloaded (similar to put the script tag at the end of the document).</li>
+</ul>
+
+    <p>
+        <span class="tag">html</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/html.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>mount</title>
+</head>
+<body>
+    <h1>mount</h1>
+    <pre><code>lsblk -o NAME,UUID
+</code></pre>
+<p>Sample result:</p>
+<pre><code>NAME      UUID
+sdc       
+├─sdc1    A190-92D5
+└─sdc2    A198-A7BC
+</code></pre>
+<p>Alternatives to mount the disk:</p>
+<pre><code>sudo mount -U {UUID} /mnt
+
+# or
+
+sudo mount --uuid {UUID} /mnt
+
+# or
+
+sudo mount {UUID} /mnt
+
+# or
+
+mount /dev/disk/by-uuid/{UUID} /mnt
+</code></pre>
+
+    <p>
+        <span class="tag">linux command disks</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$disks.html">Back</a>
+    </p>
+</body>
+</html>

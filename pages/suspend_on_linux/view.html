@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Suspend on Linux</title>
+</head>
+<body>
+    <h1>Suspend on Linux</h1>
+    <h2>Disable Suspend</h2>
+<p>Disable:</p>
+<pre><code>$ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre>
+<p>Check:</p>
+<pre><code>$ sudo systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre>
+<p>Enable Again:</p>
+<pre><code>$ sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre>
+<p>Disable Buttons, screen close:</p>
+<pre><code>$ sudo vim /etc/systemd/logind.conf
+</code></pre>
+<pre><code>[Login] 
+HandleLidSwitch=ignore 
+HandleLidSwitchDocked=ignore
+LidSwitchIgnoreInhibited=no
+</code></pre>
+<h2>Alternative</h2>
+<p>Change the suspend beahviour to freeze, that works in mosts machines!</p>
+<pre><code>$ sudo vi /etc/systemd/sleep.conf
+[Sleep]
+SuspendState=freeze
+</code></pre>
+<p>To check available states in the kernel, use <code>cat /sys/power/state</code></p>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 6. Other Concepts and Tools</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 6. Other Concepts and Tools</h1>
+    <p>Here are the essential concepts and tools you must learn to fully complete projects using Claude Code:</p>
+<hr />
+<h3>1. The &quot;Git Safety Net&quot; Workflow</h3>
+<p>Claude Code is agentic and will execute file changes and terminal commands. Git is your ultimate undo button. You should master the rhythm of working with Claude and Git together.</p>
+<ul>
+<li><strong>Commit before complex prompts:</strong> Before you ask Claude to &quot;Refactor the authentication system,&quot; commit your current working state. If Claude goes down a rabbit hole and breaks everything, you can simply run <code>git reset --hard</code> or <code>git checkout .</code> and ask it to try a different approach.</li>
+<li><strong>Ask Claude to write commit messages:</strong> After completing a feature, you can say: <em>&quot;Please review the current <code>git diff</code> and write a conventional commit message for these changes.&quot;</em> Claude will read the diff and generate a perfectly formatted commit message.</li>
+<li><strong>Fixing merge conflicts:</strong> If you pull from a branch and get conflicts, don't fix them manually. Ask Claude: <em>&quot;Resolve the git merge conflicts in <code>src/utils.js</code>. Keep my new changes but ensure the upstream changes are integrated.&quot;</em></li>
+</ul>
+<h3>2. Test-Driven Development (TDD) with Claude</h3>
+<p>To fully complete a project, you need confidence that your code works. Claude is exceptional at writing tests, but you should guide it using a TDD workflow.</p>
+<ul>
+<li><strong>Write tests first:</strong> Ask Claude to write the test suite for a feature <em>before</em> writing the feature.
+<ul>
+<li><em>Prompt:</em> &quot;Write a pytest suite for a function that validates emails. Include edge cases for missing <code>@</code> symbols, spaces, and invalid TLDs. Do not write the actual function yet.&quot;</li>
+</ul>
+</li>
+<li><strong>Run tests via Claude:</strong> Tell Claude to run the tests. It will see the failures in the terminal output.</li>
+<li><strong>Implement to pass:</strong> Then say, <em>&quot;Now write the <code>validate_email</code> function in <code>utils.py</code> to make all the tests pass.&quot;</em> Claude will iterate until the tests are green.</li>
+</ul>
+<h3>3. Plan Mode (Thinking Before Doing)</h3>
+<p>For complex features, if you just tell Claude to &quot;build it,&quot; it might start writing files immediately without a coherent architecture. You need to force Claude to plan first.</p>
+<ul>
+<li><strong>The &quot;Plan First&quot; Prompt:</strong> Start complex tasks by saying: <em>&quot;I need to implement [Feature]. Do not write any code yet. First, outline the files we need to create/modify, the architecture, and the step-by-step plan.&quot;</em></li>
+<li><strong>Review the plan:</strong> Read Claude's plan. If you agree, say: <em>&quot;Perfect, proceed with Step 1.&quot;</em> This keeps you in control of the architecture while Claude handles the implementation.</li>
+<li><strong>The &quot;Think&quot; Keyword:</strong> Using phrases like &quot;think step by step&quot; or &quot;think hard about the edge cases&quot; in your prompts forces Claude to spend more tokens on reasoning before outputting code, drastically reducing bugs.</li>
+</ul>
+<h3>4. Debugging via Stack Traces</h3>
+<p>When an error occurs in your terminal, do not copy-paste the error into the Claude chat. Let Claude see it directly.</p>
+<ul>
+<li><strong>Run failing code through Claude:</strong> If <code>npm run dev</code> crashes, run it via the Claude Code prompt.
+<ul>
+<li><em>Prompt:</em> &quot;Run <code>npm run dev</code> and tell me why it's failing.&quot;</li>
+</ul>
+</li>
+<li><strong>Attaching logs:</strong> If you have an error log file (e.g., <code>error.log</code>), tell Claude: <em>&quot;Read <code>error.log</code>, identify the root cause of the crash on line 42, and fix the corresponding file.&quot;</em></li>
+<li><strong>Adding debug logs:</strong> If a bug is elusive, ask Claude: <em>&quot;Add console.log statements to <code>userController.js</code> so we can trace the flow of the <code>req.user</code> object. Then run the server.&quot;</em></li>
+</ul>
+<h3>5. Headless Mode &amp; CLI Flags (Automation)</h3>
+<p>Claude Code isn't just an interactive chat; it can be used in scripts and CI/CD pipelines. This is crucial for automating project maintenance.</p>
+<ul>
+<li><strong>The <code>-p</code> (print) flag:</strong> You can run Claude Code without the interactive UI.
+<ul>
+<li><code>claude -p &quot;Review src/api.js for security vulnerabilities and output a markdown report.&quot;</code></li>
+</ul>
+</li>
+<li><strong>Piping inputs:</strong> You can pipe text into Claude Code.
+<ul>
+<li><code>cat error.log | claude -p &quot;Explain the error in this log and suggest a fix.&quot;</code></li>
+</ul>
+</li>
+<li><strong>Use Case:</strong> You can add a step in your GitHub Actions or Git hooks that runs <code>claude -p &quot;Check if the code conforms to our ESLint rules and auto-fix formatting.&quot;</code> before allowing a commit.</li>
+</ul>
+<h3>6. Code Review &amp; Refactoring Workflows</h3>
+<p>Completing a project means polishing the code. Claude Code has native tools for analyzing code quality.</p>
+<ul>
+<li><strong>Reviewing Diffs:</strong> Before committing, ask: <em>&quot;Look at the unstaged changes (<code>git diff</code>). Are there any performance issues or bugs in the code I just wrote?&quot;</em></li>
+<li><strong>Targeted Refactoring:</strong> Don't ask Claude to &quot;refactor the app.&quot; Ask for specific improvements:
+<ul>
+<li><em>&quot;Refactor <code>database.js</code> to use async/await instead of <code>.then()</code> promises.&quot;</em></li>
+<li><em>&quot;Extract the validation logic from <code>userRoute.js</code> into a separate <code>userValidation.js</code> file.&quot;</em></li>
+</ul>
+</li>
+<li><strong>Dependency Updates:</strong> You can ask Claude to update packages and fix breaking changes: <em>&quot;Update React to v18 in <code>package.json</code>, run <code>npm install</code>, and fix any TypeScript errors caused by the upgrade.&quot;</em></li>
+</ul>
+<h3>7. The <code>.claudeignore</code> File (Focus)</h3>
+<p>Just like <code>.gitignore</code>, you can create a <code>.claudeignore</code> file in your project root. This prevents Claude from reading or indexing certain files, which keeps its context focused and speeds up its file-searching tools.</p>
+<ul>
+<li><strong>What to put in <code>.claudeignore</code>:</strong>
+<ul>
+<li><code>*.min.js</code> (Minified files are useless to read)</li>
+<li><code>package-lock.json</code> or <code>yarn.lock</code> (Too large, no useful logic)</li>
+<li><code>assets/images/*</code> (Claude can't &quot;see&quot; images in code files effectively)</li>
+<li><code>coverage/</code> (Test coverage reports)</li>
+</ul>
+</li>
+</ul>
+<h3>Summary: The &quot;Completion&quot; Checklist</h3>
+<p>To guarantee a project is truly finished using Claude Code, run through this mental checklist:</p>
+<ol>
+<li>Did I commit my work before asking Claude to make large changes?</li>
+<li>Did I ask Claude to write tests for the new features?</li>
+<li>Did I ask Claude to run the linter and fix all warnings?</li>
+<li>Did I review the <code>git diff</code> with Claude to check for security or performance issues?</li>
+<li>Did I update <code>CLAUDE.md</code> with any new commands or architectural changes?</li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

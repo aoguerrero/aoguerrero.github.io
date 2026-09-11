@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Bypass account login when installing Windows</title>
+</head>
+<body>
+    <h1>Bypass account login when installing Windows</h1>
+    <p>Press <strong>Shift + F10</strong> and type</p>
+<pre><code>net.exe user {username} {password} /add
+net.exe localgroup Administrators {username} /add
+cd oobe
+msoobe.exe &amp;&amp; shutdown.exe -r
+</code></pre>
+<p>or</p>
+<p>Old method (seems that it doesn't work anymore)</p>
+<pre><code>OOBE/BYPASSNRO
+</code></pre>
+<p>or</p>
+<pre><code>start ms-chx:localonly
+</code></pre>
+
+    <p>
+        <span class="tag">windows</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows.html">Back</a>
+    </p>
+</body>
+</html>

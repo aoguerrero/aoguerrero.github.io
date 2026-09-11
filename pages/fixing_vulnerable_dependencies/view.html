@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Fixing Vulnerable Dependencies</title>
+</head>
+<body>
+    <h1>Fixing Vulnerable Dependencies</h1>
+    <h2>Identify the vulnerable libraries</h2>
+<p>Include plugin for local scan:</p>
+<pre><code>grouId: org.owasp
+artifactId: dependency-check-maven
+version: 8.1.0
+executions, execution, goals, goal: check
+</code></pre>
+<p>Generate the report:</p>
+<pre><code>mvn dependency-check:check
+</code></pre>
+<p>Compare with external reports and verify that the project own dependencies are present, sometimes the external scan can be executed over a docker image that can include other Java applications.</p>
+<p>To list the application dependencies, run:</p>
+<pre><code>mvn dependency:tree
+</code></pre>
+<h2>Updating the libraries</h2>
+<p>Check your current Spring Boot Version, and see if in the same minor version are a newer release, you can verify the current stable versions in:
+<a href="https://start.spring.io">https://start.spring.io</a></p>
+<p>After updating the libraries run the reports again.</p>
+<p>For the remaining vulnerable libraries you have to update the specific version, to do that, get the &quot;Effective POM&quot; executing:</p>
+<pre><code>mvn help:effective-pom
+</code></pre>
+<p>It will display the full POM including the parts from the parents POMs.</p>
+<p>Upgrade the versions using the values of the properties for each vulnerable dependency when is inherit from the parent POM, otherwise, update the versions directly in the dependency elements.</p>
+
+    <p>
+        <span class="tag">java</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/java.html">Back</a>
+    </p>
+</body>
+</html>

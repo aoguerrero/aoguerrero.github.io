@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Java Coding from Android (using Termux)</title>
+</head>
+<body>
+    <h1>Java Coding from Android (using Termux)</h1>
+    <h2>Install Termux</h2>
+<p>Download and Install APK from:</p>
+<p><a href="https://github.com/termux/termux-app/releases">https://github.com/termux/termux-app/releases</a></p>
+<h2>Base Packages</h2>
+<pre><code>pkg install git
+pkg install python3
+pkg install wget
+pkg install openjdk-21
+pkg install maven
+pkg install helix
+pkg install helix-grammars
+pkg install tmux
+</code></pre>
+<h2>Java Language Server</h2>
+<p>Download and extract the package:</p>
+<pre><code>wget https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.48.0/jdt-language-server-1.48.0-202506271502.tar.gz -O jdtls.tar.gz
+mkdir -p $HOME/jdtls
+tar xzvf jdtls.tar.gz -C $HOME/jdtls
+rm jdtls.tar.gz
+</code></pre>
+<p>Append to the <code>~/.bashrc</code> file</p>
+<pre><code>export PATH=$PATH:$HOME/jdtls/bin
+</code></pre>
+<h2>Java Code Formatter</h2>
+<p>Download package, create bash script and include in the system path:</p>
+<pre><code>mkdir -p $HOME/gjf
+wget https://github.com/google/google-java-format/releases/download/v1.28.0/google-java-format-1.28.0-all-deps.jar -O $HOME/gjf/gjf.jar
+echo &quot;#!/bin/bash&quot; &gt;&gt; $HOME/gjf/gjf.sh
+echo &quot;java -jar $HOME/gjf/gjf.jar $1&quot; &gt;&gt; $HOME/gjf/gjf.sh
+chmod +x $HOME/gjf/gjf.sh
+</code></pre>
+<p>Append to the <code>~/.bashrc</code> file</p>
+<pre><code>export PATH=$PATH:$HOME/gjf
+</code></pre>
+<h2>XML Formatter</h2>
+<p>Install Package</p>
+<pre><code>pkg install libxml2-utils
+</code></pre>
+<p>Append to the <code>~/.bashrc</code> file</p>
+<pre><code>export XMLLINT_INDENT=&quot;  &quot;
+</code></pre>
+<h3>JavaScript Formatter</h3>
+<pre><code>pkg install nodejs-lts
+npm install --global --save-dev --save-exact prettier
+touch $HOME/.prettierignore
+echo '{&quot;tabWidth&quot;: 2, &quot;useTabs&quot;: false }' &gt; $HOME/.prettierrc
+</code></pre>
+<h2>Configure Helix</h2>
+<p>Edit file: <code>.config/helix/languages.toml</code> with the following content:</p>
+<pre><code>[[language]]
+name = &quot;xml&quot;
+formatter = { command = &quot;xmllint&quot;, args = [&quot;--format&quot;, &quot;-&quot;] }
+
+[[language]]
+name = &quot;java&quot;
+formatter = { command = &quot;gjf.sh&quot;, args = [&quot;-&quot;] }
+
+[[language]]
+name = &quot;json&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;json&quot;] }
+
+[[language]]
+name = &quot;html&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;html&quot;] }
+
+[[language]]
+name = &quot;css&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;css&quot;] }
+
+[[language]]
+name = &quot;scss&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;scss&quot;] }
+
+[[language]]
+name = &quot;javascript&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;typescript&quot;] }
+
+[[language]]
+name = &quot;typescript&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;typescript&quot;] }
+
+[[language]]
+name = &quot;tsx&quot;
+formatter = { command = 'prettier', args = [&quot;--parser&quot;, &quot;typescript&quot;] }
+</code></pre>
+<hr />
+<p><em>Last update: 2025-07-28</em></p>
+
+    <p>
+        <span class="tag">java linux android</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/java$linux$android.html">Back</a>
+    </p>
+</body>
+</html>

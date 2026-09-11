@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Using PowerShell</title>
+</head>
+<body>
+    <h1>Using PowerShell</h1>
+    <p>List the current environment variables:</p>
+<pre><code>Get-ChildItem Env:
+</code></pre>
+<p>Get the values of environment variable:</p>
+<pre><code>$env:{variable name}
+
+# Example, cd Java Home
+
+cd $env:JAVA_HOME
+</code></pre>
+<p>Get a Random UUID</p>
+<pre><code>New-Guid
+
+# Copy result to clipboard
+(New-Guid).Guid | clip
+</code></pre>
+<p>Allow Execution of Scripts</p>
+<pre><code>Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+</code></pre>
+
+    <p>
+        <span class="tag">windows command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows$command.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>keyd</title>
+</head>
+<body>
+    <h1>keyd</h1>
+    <p>keyd is a linux utility to change the keymapping of the keyboard.</p>
+<h2>Fedora</h2>
+<h3>Install</h3>
+<pre><code>dnf install gcc make
+</code></pre>
+<pre><code>git clone https://github.com/rvaiya/keyd
+cd keyd
+make &amp;&amp; sudo make install
+sudo systemctl enable --now keyd
+</code></pre>
+<h3>Configure</h3>
+<p>Example <code>/etc/keyd/default.conf</code></p>
+<pre><code>[ids]
+
+*
+
+[meta]
+
+f1 = f11
+f2 = f12
+up = pageup
+down = pagedown
+left = home
+right = end
+backspace = delete
+
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

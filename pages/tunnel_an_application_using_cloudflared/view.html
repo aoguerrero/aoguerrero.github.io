@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Tunnel a Web Application Using Cloudflared</title>
+</head>
+<body>
+    <h1>Tunnel a Web Application Using Cloudflared</h1>
+    <ol>
+<li>
+<p>Configure the domain in Cloudflared; set the DNS addresses in the provider (Route53, NameCheap, GoDaddy, etc.) with the values stablished by Cloudflare.</p>
+<p><a href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a></p>
+</li>
+<li>
+<p>Download and install the client</p>
+<p><a href="https://github.com/cloudflare/cloudflared/releases">https://github.com/cloudflare/cloudflared/releases</a></p>
+<p>or</p>
+<p>If using Termux (Android), just install the package</p>
+<pre><code>pkg install cloudflared
+</code></pre>
+</li>
+<li>
+<p>Install the certificate</p>
+<pre><code>cloudflared tunnel login
+</code></pre>
+<p>Copy the path of the generated JSON, it is the <code>credentials-file</code> required in next steps.</p>
+<ol start="4">
+<li>Create the tunnel</li>
+</ol>
+<pre><code>cloudflared tunnel create {name}
+</code></pre>
+</li>
+<li>
+<p>Modify the <strong>config.yml</strong> file (example)</p>
+<pre><code>tunnel: {uuid}
+credentials-file: /path/to/.cloudflared/{uuid}.json
+ingress:
+  - hostname: {domain}
+    service: http://localhost:{port}
+  - service: http_status:404
+</code></pre>
+</li>
+<li>
+<p>Route the DNS</p>
+<pre><code>cloudflared tunnel route dns {tunnel} {domain}
+</code></pre>
+<p>The target domain or subdomain should be used. This step creates the entry in the DNS records.</p>
+</li>
+<li>
+<p>Start the tunnel</p>
+<pre><code>cloudflared tunnel run {tunnel}
+</code></pre>
+</li>
+<li>
+<p>Install the service (Not available in Termux)</p>
+<pre><code>sudo cloudflared service install
+</code></pre>
+</li>
+</ol>
+<h2>Additional Info</h2>
+<p>It is possible to link other domains to the tunnel, go to the domain configuration and copy the CNAME entry, the one that has <code>{...}.cfargotunnel.com</code>, add the domain to the <code>config.yml</code> file and configure nginx like this:</p>
+<pre><code>http {
+...
+  server {
+    listen 80 default_server;
+    server_name firstdomain.com;
+    ...
+  }
+  server {
+    listen 80;
+    server_name seconddomain.com;
+    ...
+  }
+}
+</code></pre>
+<hr />
+<p>Open source alternatives:<br />
+<a href="https://github.com/anderspitman/awesome-tunneling">https://github.com/anderspitman/awesome-tunneling</a></p>
+
+    <p>
+        <span class="tag">linux net</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$net.html">Back</a>
+    </p>
+</body>
+</html>

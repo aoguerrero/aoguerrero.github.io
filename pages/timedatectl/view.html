@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>timedatectl</title>
+</head>
+<body>
+    <h1>timedatectl</h1>
+    <p>These steps solved an issue with automatic datetime synchronization in a SBC (Lepotato - Debian).</p>
+<pre><code>sudo apt install systemd-timesyncd
+
+sudo timedatectl set-timezone &quot;America/Bogota&quot;
+sudo timedatectl set-ntp true
+sudo systemctl restart systemd-timedated
+sudo timedatectl set-ntp on
+
+# Check configuration
+sudo timedatectl
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

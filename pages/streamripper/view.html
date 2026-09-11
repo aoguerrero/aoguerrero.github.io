@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>streamripper</title>
+</head>
+<body>
+    <h1>streamripper</h1>
+    <p>Split songs using silence detection and creates a relay server on port 8000</p>
+<pre><code>streamripper {url} -d {output path} -r -u &quot;VLC/3.0.10 LibVLC/3.0.8&quot;
+</code></pre>
+<p>Downloads the stream in a single file until the specified size in megabytes is reached.</p>
+<pre><code>streamripper {url} -a {filename} -M {size} -i -u &quot;VLC/3.0.10 LibVLC/3.0.8&quot;
+</code></pre>
+<p>By default it writes the individual files, to prevent it, use <code>-A</code></p>
+<p>This package is available in the Fedora Fusion repository, to enable it:</p>
+<pre><code>sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+sudo dnf install streamripper
+</code></pre>
+
+    <p>
+        <span class="tag">linux command music</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$music.html">Back</a>
+    </p>
+</body>
+</html>

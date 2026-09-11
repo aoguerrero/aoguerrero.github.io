@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>chmod</title>
+</head>
+<body>
+    <h1>chmod</h1>
+    <p>Permissions</p>
+<ul>
+<li>
+<p>u = User (Owner)</p>
+</li>
+<li>
+<p>g = Group of the owner user</p>
+</li>
+<li>
+<p>o = Other users</p>
+</li>
+<li>
+<p>a = All or ugo</p>
+</li>
+<li>
+<p>r = 4</p>
+</li>
+<li>
+<p>w = 2</p>
+</li>
+<li>
+<p>x = 1</p>
+</li>
+<li>
+<p>None = 0</p>
+</li>
+</ul>
+<h2>Examples</h2>
+<p>Read, Write and Execution for User</p>
+<pre><code>chmod u=rwx {file}
+</code></pre>
+<p>7 = 4 + 2 + 1</p>
+<pre><code>      ugo 
+chmod 700 {file} 
+</code></pre>
+<p>Read for User and Group</p>
+<pre><code>chmod ug=r {file}
+    
+      ugo
+chmod 440 {file} 
+</code></pre>
+<p>More open mode</p>
+<pre><code>chmod ugo=rwx {file} 
+chmod a=rwx {file}    
+chmod 777 {file} 
+</code></pre>
+<p>Web Server</p>
+<pre><code>sudo chown -R www-data:www-data /var/www/html
+sudo find /var/www/html -type d -exec chmod g+w {} \;
+sudo find /var/www/html -type f -exec chmod g+w {} \;
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

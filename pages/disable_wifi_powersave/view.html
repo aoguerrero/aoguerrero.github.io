@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Disable WiFi Powersave on Linux</title>
+</head>
+<body>
+    <h1>Disable WiFi Powersave on Linux</h1>
+    <p>Create a file named <code>/etc/NetworkManager/conf.d/wifi-powersave-off.conf</code></p>
+<pre><code>[connection]
+wifi.powersave = 2
+</code></pre>
+<p>Available values are</p>
+<ul>
+<li>0 (use default)</li>
+<li>1 (ignore/don't touch)</li>
+<li>2 (disable)</li>
+<li>3 (enable)</li>
+</ul>
+<p>Also disabling IPv6 can fix some issues with wireless Network Cards.</p>
+<p>Disable 802.11n (issue with old intel wifi cards)</p>
+<pre><code>sudo vi /etc/modprobe.d/iwlwifi.conf
+options iwlwifi 11n_disable=1
+</code></pre>
+
+    <p>
+        <span class="tag">linux net</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$net.html">Back</a>
+    </p>
+</body>
+</html>

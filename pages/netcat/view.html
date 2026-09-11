@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>netcat</title>
+</head>
+<body>
+    <h1>netcat</h1>
+    <p>Install: <code>netcat-openbsd</code> and <code>pv</code></p>
+<p>Sending and Receiving Files</p>
+<pre><code># Receiver
+nc -l {port} &gt; {file}
+
+# Sender
+nc -N {ip} {port} &lt; {file}
+# Using `cat`
+cat {file} | nc -N {ip} {port}
+# With progress
+cat {file} | pv |nc -N {ip} {port}
+</code></pre>
+<p>Start a http server (to test open ports)</p>
+<pre><code>while true ; do nc -l -p {port} -c 'echo -e &quot;HTTP/1.1 200 OK\n\n $(date)&quot;'; done
+</code></pre>
+<p>Check if a port is open</p>
+<pre><code>nc -zv {ip} {port}
+</code></pre>
+
+    <p>
+        <span class="tag">linux command net</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$net.html">Back</a>
+    </p>
+</body>
+</html>

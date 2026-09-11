@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Enable RDP on Windows Home</title>
+</head>
+<body>
+    <h1>Enable RDP on Windows Home</h1>
+    <ol>
+<li>Download RDP Wrapper</li>
+</ol>
+<p><a href="https://github.com/stascorp/rdpwrap">https://github.com/stascorp/rdpwrap</a></p>
+<ol start="2">
+<li>
+<p>Execute <code>install.bat</code></p>
+</li>
+<li>
+<p>Download updated <code>rdpwrap.ini</code></p>
+</li>
+</ol>
+<p><a href="https://github.com/sebaxakerhtc/rdpwrap.ini">https://github.com/sebaxakerhtc/rdpwrap.ini</a></p>
+<ol start="4">
+<li>Stop RDP service</li>
+</ol>
+<pre><code>net stop termService
+</code></pre>
+<ol start="5">
+<li>
+<p>Replace <code>rdpwrap.ini</code> downloaded in step 3 in <code>C:\Program Files\RDP Wrapper</code></p>
+</li>
+<li>
+<p>Start RDP service</p>
+</li>
+</ol>
+<pre><code>net start termService
+</code></pre>
+<p>Windows is a really, really, REALLY, bad Operating System, any Linux distro is better, even the worst one.</p>
+
+    <p>
+        <span class="tag">windows</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows.html">Back</a>
+    </p>
+</body>
+</html>

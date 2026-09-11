@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 4. Iterating</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 4. Iterating</h1>
+    <p>This is the most common scenario in software development. You get a working draft, but it needs polish.</p>
+<p>The biggest risk here is <strong>context bloat</strong>. If you just keep saying &quot;fix this, now fix that,&quot; Claude's context window will fill up with the history of the old code, the bugs, and the fixes, eventually causing it to lose track of the current state of the file.</p>
+<p>Here is the best workflow for iterating on code while keeping Claude's context perfectly clean and up to date.</p>
+<hr />
+<h3>1. The &quot;Checkpoint and Clear&quot; Strategy (Golden Rule)</h3>
+<p>The most important habit to build is creating checkpoints. When Claude gives you that &quot;OK&quot; initial version, you should treat it as a save point in a video game.</p>
+<p><strong>The Workflow:</strong></p>
+<ol>
+<li><strong>Review the initial code:</strong> Claude writes the feature. It works, but needs improvements.</li>
+<li><strong>Commit the code:</strong> Do not ask Claude to fix it yet! First, drop to your terminal (or ask Claude) and commit the current working state.
+<ul>
+<li><em>Prompt to Claude:</em> &quot;The initial version is okay. Let's commit this as a checkpoint before we refine it. Please stage all changes and commit with the message 'feat: initial draft of user auth'.&quot;</li>
+</ul>
+</li>
+<li><strong>Make the improvements:</strong> Tell Claude exactly what needs to be fixed (more on this below).</li>
+<li><strong>Clear the context:</strong> Once the fixes are applied and working, type <code>/clear</code>.</li>
+<li><strong>Start fresh:</strong> Claude's memory is wiped. However, because you committed the code, the <em>files on your disk</em> are up to date. When you start your next task, Claude will read the current, updated files.</li>
+</ol>
+<p><em>Why this works:</em> You don't carry the history of the &quot;bad&quot; code in Claude's memory. It only sees the final, improved version.</p>
+<hr />
+<h3>2. How to Prompt for Modifications (Be Targeted)</h3>
+<p>When asking for those initial improvements or bug fixes, be highly specific to prevent Claude from rewriting the entire file from scratch (which wastes tokens and can introduce new bugs).</p>
+<p><strong>Rule: Tell Claude what to touch, and explicitly tell it what NOT to touch.</strong></p>
+<ul>
+<li><strong>Bad Prompt:</strong> &quot;The login function is broken, fix it.&quot;
+<em>(Risk: Claude might rewrite the whole <code>auth.py</code> file, deleting other working functions).</em></li>
+<li><strong>Good Prompt:</strong> &quot;There is a bug in the <code>validate_token</code> function inside <code>auth.py</code>. It fails when the token is expired. Please update <em>only</em> the <code>validate_token</code> function to handle expired tokens gracefully. Do not modify the rest of the file.&quot;</li>
+</ul>
+<h3>3. The Feedback Loop for Bug Fixes</h3>
+<p>If the bug requires running the code to see the error, let Claude do the debugging. Do not copy-paste terminal errors into the chat if Claude can run the command itself.</p>
+<p><strong>The Workflow:</strong></p>
+<ol>
+<li><strong>State the problem:</strong> &quot;When I run <code>npm start</code>, the app crashes when I click the submit button.&quot;</li>
+<li><strong>Ask Claude to investigate:</strong> &quot;Please run <code>npm start</code>, look at the error, identify the bug in <code>Form.js</code>, and fix it.&quot;</li>
+<li><strong>Claude runs the command:</strong> Claude will execute <code>npm start</code>, read the stack trace from the terminal output directly into its context, find the line in <code>Form.js</code>, and propose the fix.</li>
+</ol>
+<p>Because Claude reads the terminal output itself, it gets the exact, unmodified error message and the exact file state simultaneously.</p>
+<h3>4. Updating Long-Term Context (<code>CLAUDE.md</code>)</h3>
+<p>If the &quot;improvement&quot; you are making changes the overall architecture or rules of the project, you must update <code>CLAUDE.md</code> <em>after</em> the fix is applied.</p>
+<p><strong>Example:</strong>
+You ask Claude to fix a slow database query. It fixes it by adding an index and changing the ORM syntax.</p>
+<ul>
+<li><em>Prompt:</em> &quot;Great fix. Since we changed how we handle database queries here, please update <code>CLAUDE.md</code> under the 'Conventions' section to note that all database queries must use the new indexed syntax we just implemented.&quot;</li>
+</ul>
+<p>This ensures that the next time you <code>/clear</code> the context, Claude won't revert to the old, slow way of doing things.</p>
+<h3>5. Using <code>git diff</code> for Review</h3>
+<p>When Claude applies the modifications, you shouldn't just trust them. You can ask Claude to review its own changes using Git.</p>
+<ul>
+<li><em>Prompt:</em> &quot;Before we move on, please run <code>git diff</code> and review the changes you just made. Are there any edge cases you missed? Are there any leftover console logs or debug statements?&quot;</li>
+</ul>
+<p>Claude will look at the diff (which is very token-efficient compared to reading whole files) and often catch its own minor mistakes before you commit them.</p>
+<h3>Summary Checklist for Iterations:</h3>
+<ol>
+<li>Get the &quot;OK&quot; version working.</li>
+<li><strong>Commit it</strong> (Create a checkpoint).</li>
+<li>Tell Claude exactly which function/line needs the bug fix, and tell it to leave the rest of the file alone.</li>
+<li>Let Claude run the code and read the errors itself.</li>
+<li>Once fixed, commit again.</li>
+<li>Type <code>/clear</code> to wipe the history of the bug fix from Claude's memory.</li>
+<li>Update <code>CLAUDE.md</code> if the fix introduced a new project rule.</li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

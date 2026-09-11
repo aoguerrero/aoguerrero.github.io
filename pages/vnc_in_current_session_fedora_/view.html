@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>VNC in current session (Fedora)</title>
+</head>
+<body>
+    <h1>VNC in current session (Fedora)</h1>
+    <pre><code>
+sudo dnf install tigervnc-server
+
+# Both needs to be executed (current runtime, next reboot)
+sudo firewall-cmd --permanent --add-port=5900/tcp
+sudo firewall-cmd --add-port=5900/tcp
+
+echo {password} | vncpasswd -f &gt; $HOME/.vnc/passwd
+
+x0vncserver -display :0 -rfbauth $HOME/.vnc/passwd
+
+# Change the resolution in the VNC session
+xrandr -s 1920x1080
+
+# Check the available modes
+xrandr -d :0
+
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

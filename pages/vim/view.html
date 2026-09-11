@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>vim</title>
+</head>
+<body>
+    <h1>vim</h1>
+    <p>Save when forget to sudo</p>
+<pre><code>:w !sudo tee %
+</code></pre>
+<p>Search case insensitive or sensitive</p>
+<pre><code>/texttosearch\c or \C
+
+n=Next
+N=Previous
+</code></pre>
+<p>Search and replace</p>
+<pre><code>:%s/texttosearch/replacewith/g
+</code></pre>
+<p>Re-Indent code</p>
+<pre><code>gg=G
+</code></pre>
+<p>Open file navigator (netrw)</p>
+<pre><code>:Ex
+# Return to the previous buffer / netrw
+:Rex
+</code></pre>
+<p>Close opened file (also closes netrw)</p>
+<pre><code>:bd
+# or
+:bw
+</code></pre>
+<p>List / switch to open buffer</p>
+<pre><code>:ls
+:b {filename} # Tab autocompletes
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

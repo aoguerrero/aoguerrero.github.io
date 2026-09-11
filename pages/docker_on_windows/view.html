@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Docker on Windows using WSL2 (without Docker Desktop)</title>
+</head>
+<body>
+    <h1>Docker on Windows using WSL2 (without Docker Desktop)</h1>
+    <h2>Enable WSL (on Windows PowerShell)</h2>
+<pre><code>wsl --install Ubuntu
+</code></pre>
+<h2>Install Docker CE (on WSL Terminal)</h2>
+<h3>Remove previous installed packages</h3>
+<pre><code>for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+</code></pre>
+<h3>Add Docker's official GPG key:</h3>
+<pre><code>sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+</code></pre>
+<h3>Add the repository to Apt sources:</h3>
+<pre><code>echo \
+  &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;&amp; echo &quot;${UBUNTU_CODENAME:-$VERSION_CODENAME}&quot;) stable&quot; | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+<h3>Install packages</h3>
+<pre><code>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+<h3>Verify Installation</h3>
+<pre><code>sudo docker run hello-world
+</code></pre>
+<h3>Configure Docker to accept remote connections</h3>
+<p>Stop Docker daemon</p>
+<pre><code>sudo systemctl stop docker.socket
+sudo systemctl stop docker.service
+</code></pre>
+<p>Edit Docker Service configuration from <code>/lib/systemd/system/docker.service</code>, removing the <code>-H</code> parameter:</p>
+<pre><code>ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+</code></pre>
+<p>Reload service configuration:</p>
+<pre><code>sudo systemctl daemon-reload
+</code></pre>
+<p>Enable external acces creating the file: <code>/etc/docker/daemon.json</code> with the following content:</p>
+<pre><code>{
+  &quot;hosts&quot;: [&quot;unix:///var/run/docker.sock&quot;, &quot;tcp://0.0.0.0:2375&quot;]
+}
+</code></pre>
+<p>Start Docker:</p>
+<pre><code>sudo service docker start
+</code></pre>
+<h2>Install docker cli (on Windows Host)</h2>
+<pre><code>winget install --id=Docker.DockerCLI -e
+</code></pre>
+<p>Create an environment variable on Windows Host: <code>DOCKER_HOST=tcp://localhost:2375</code></p>
+<p>Test the configuration:</p>
+<pre><code>docker ps
+</code></pre>
+
+    <p>
+        <span class="tag">windows</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows.html">Back</a>
+    </p>
+</body>
+</html>

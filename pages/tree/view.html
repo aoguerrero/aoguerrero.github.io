@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>tree</title>
+</head>
+<body>
+    <h1>tree</h1>
+    <p>I use tree to list the contents of a java project, including files with <code>.java</code>, <code>.properties</code> and <code>.xml</code> extensions, and excluding compiled files, etc.</p>
+<pre><code>tree -P *.java -P *.properties -P *.xml -I **/META-INF/** --prune
+</code></pre>
+<ul>
+<li><code>-P</code> Include only the paths that matches the pattern</li>
+<li><code>-I</code> Exclude the paths that matches the pattern</li>
+<li><code>--prune</code> Exclude empty directories from the output</li>
+</ul>
+<p>Since the formatting uses too much spaces, using <code>sed</code> is possible to make the output compact (replacing two spaces by one).</p>
+<pre><code>sed 's/  / /g'
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

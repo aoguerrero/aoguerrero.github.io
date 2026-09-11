@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Use SSH Key to authenticate with Git</title>
+</head>
+<body>
+    <h1>Use SSH Key to authenticate with Git</h1>
+    <p>Generate Public and Private Key:</p>
+<pre><code>ssh-keygen -t rsa -b 2048
+</code></pre>
+<p>Copy contents of <code>.pub</code> to provider.</p>
+<p>Configure private key path</p>
+<pre><code>vi ~/.ssh/config
+
+Host {host of git}
+  PreferredAuthentications publickey
+  IdentityFile /path/to/privatekey
+
+</code></pre>
+<p>Reference:<br />
+<a href="https://docs.gitlab.com/user/ssh/">https://docs.gitlab.com/user/ssh/</a></p>
+
+    <p>
+        <span class="tag">git ssh</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/git$ssh.html">Back</a>
+    </p>
+</body>
+</html>

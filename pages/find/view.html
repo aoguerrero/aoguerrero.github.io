@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>find</title>
+</head>
+<body>
+    <h1>find</h1>
+    <p>Find by name</p>
+<pre><code>find . -iname &quot;{pattern}&quot; -o -iname &quot;{pattern}&quot;
+</code></pre>
+<p>Find by regex</p>
+<pre><code>find . -iregex &quot;\..*\.mp3&quot;
+</code></pre>
+<p>Delete files more than {n} days old</p>
+<pre><code>find . -iname &quot;{pattern}&quot; -type f -mtime +{n} -delete
+</code></pre>
+<p>Archieve and delete files</p>
+<pre><code>find . -iname &quot;{pattern}&quot; -type f -print | xargs tar -czvPf ./{file}.tar.gz --remove-files
+</code></pre>
+<p>Archieve and delete files more than {n} days old</p>
+<pre><code>find . -iname &quot;{pattern}&quot; -type f -mtime +{n} -print | xargs tar -czvPf ./{file}.tar.gz --remove-files
+</code></pre>
+<p>Change new lines from DOS to UNIX</p>
+<pre><code>find ./ -type f -exec dos2unix {} \;
+</code></pre>
+<p>Find and count</p>
+<pre><code>find . -type f -name &quot;*.pdf&quot; | wc -l
+</code></pre>
+<p>Find and delete</p>
+<pre><code>find . -type f -name &quot;*.json&quot; -exec rm -f {} \;
+</code></pre>
+<p>Run a command with each found file</p>
+<pre><code>find . -exec sh -c 'commands &quot;$1&quot;' sh {} \;
+</code></pre>
+<p>Find files bigger than</p>
+<pre><code>find / -size +10M -size -12M -ls
+</code></pre>
+<p>Prevent the <code>./</code> at the beginning of each filen ame</p>
+<pre><code>find * -maxdepth 0
+</code></pre>
+<p>Append <code>2&gt;/dev/null</code> at the end of the command to avoid the <code>permission denied</code> message</p>
+<p>Execute <code>git status</code> in all the directories in the current directory.</p>
+<pre><code>find * -maxdepth 0 -type d -exec echo &quot;-----&gt; {}&quot; \; -exec git -C {} status \;
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

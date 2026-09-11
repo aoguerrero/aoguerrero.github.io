@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Radio ATS-MINI2</title>
+</head>
+<body>
+    <h1>Radio ATS-MINI2</h1>
+    <h1>URLs</h1>
+<p>Procedure Instructions<br />
+<a href="https://esp32-si4732.github.io/ats-mini/recovery.html#backup">https://esp32-si4732.github.io/ats-mini/recovery.html#backup</a></p>
+<p>Install UV (tool to flash firmware)<br />
+<a href="https://docs.astral.sh/uv/getting-started/installation/">https://docs.astral.sh/uv/getting-started/installation/</a></p>
+<p>Releases (Check the about page)<br />
+<a href="https://github.com/jumbo5566/ats-mini2/releases">https://github.com/jumbo5566/ats-mini2/releases</a></p>
+<h1>Linux Commands</h1>
+<p>Find Port (Found /dev/ttyACM0)</p>
+<pre><code>ls /dev/tty*
+</code></pre>
+<p>Backup</p>
+<pre><code>uvx --from esptool esptool.py --chip esp32s3 --port /dev/ttyACM0 --baud 921600 read_flash 0x0 ALL original-flash.bin
+</code></pre>
+<p>Restore</p>
+<pre><code>uvx --from esptool esptool.py --chip esp32s3 --port /dev/ttyACM0 --baud 921600 --before default_reset --after hard_reset write_flash  -z --flash_mode keep --flash_freq keep --flash_size keep 0x0 original-flash.bin
+</code></pre>
+<p>Write Downloaded Firmware</p>
+<pre><code>uvx --from esptool esptool.py --chip esp32s3 --port /dev/ttyACM0 --baud 921600 --before default-reset --after hard-reset write_flash  -z --flash-mode keep --flash-freq keep --flash-size keep 0x0 ats-mini.ino.bootloader.bin 0x8000 ats-mini.ino.partitions.bin 0x10000 ats-mini-main_src233.ino.bin
+</code></pre>
+<h1>Operation</h1>
+<p>View / Edit Radio Memory<br />
+Connect via USB, find port and use: <a href="https://esp32-si4732.github.io/ats-mini/memory.html">https://esp32-si4732.github.io/ats-mini/memory.html</a> (chrome only)</p>
+<p>Radio Stations in Bogotá<br />
+<a href="https://es.wikipedia.org/wiki/Anexo:Emisoras_de_Bogot%C3%A1">https://es.wikipedia.org/wiki/Anexo:Emisoras_de_Bogot%C3%A1</a></p>
+
+    <p>
+        <span class="tag">esp32 radio</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/esp32$radio.html">Back</a>
+    </p>
+</body>
+</html>

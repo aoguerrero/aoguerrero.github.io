@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Basic Git</title>
+</head>
+<body>
+    <h1>Basic Git</h1>
+    <p>Cache credentials</p>
+<pre><code>git config --global credential.helper store
+</code></pre>
+<p>Create and checkout a branch</p>
+<pre><code>git checkout -b {branch name}
+</code></pre>
+<p>Adding / Removing files to be commited (add to stage)</p>
+<pre><code>git add {file}
+git reset {file}
+</code></pre>
+<p>Check the changes in the added (staged) files</p>
+<pre><code>git diff --staged
+</code></pre>
+<p>Commit with message</p>
+<pre><code>git commit -m &quot;Commit description&quot;
+</code></pre>
+<p>Delete a branch, local + remote</p>
+<pre><code>git branch -d {branch name}
+git push origin :{branch name}
+</code></pre>
+<p>Cherry-Pick without doing commit</p>
+<pre><code>git cherry-pick -n {hash}
+</code></pre>
+<p>Get the parent branch of the current branch</p>
+<pre><code>git log --graph --decorate --simplify-by-decoration
+</code></pre>
+<p>Stashing changes</p>
+<pre><code>git stash # Create Stash
+git list
+
+git apply 0 # or
+git pop 0 # Remove from stash also
+
+git drop 0
+git show 0 # --patch (if needed)
+</code></pre>
+<p>Merge changes from another branch without commit</p>
+<pre><code>git merge --squash {}
+</code></pre>
+<p>List branches with and without remote counterpart</p>
+<pre><code>git branch -vv # In the right side, the remote branch is shown in [...]
+</code></pre>
+
+    <p>
+        <span class="tag">git</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/git.html">Back</a>
+    </p>
+</body>
+</html>

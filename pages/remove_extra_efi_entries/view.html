@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Remove Extra EFI entries</title>
+</head>
+<body>
+    <h1>Remove Extra EFI entries</h1>
+    <p>Source: <a href="https://askubuntu.com/questions/429610/uninstall-grub-and-use-windows-bootloader">https://askubuntu.com/questions/429610/uninstall-grub-and-use-windows-bootloader</a></p>
+<ul>
+<li>
+<p>Run a <code>cmd.exe</code> process with administrator privileges</p>
+</li>
+<li>
+<p>Run <code>diskpart</code></p>
+</li>
+<li>
+<p>Type: <code>list disk</code> then <code>sel disk X</code> where X is the drive your boot files reside on</p>
+</li>
+<li>
+<p>Type <code>list vol</code> to see all partitions (volumes) on the disk (the EFI volume will be formatted in FAT, others will be NTFS)</p>
+</li>
+<li>
+<p>Select the EFI volume by typing: <code>sel vol Y</code> where Y is the SYSTEM volume (this is almost always the EFI partition)</p>
+</li>
+<li>
+<p>For convenience, assign a drive letter by typing: <code>assign letter=Z:</code> where Z is a free (unused) drive letter</p>
+</li>
+<li>
+<p>Type <code>exit</code> to leave disk part</p>
+</li>
+<li>
+<p>While still in the cmd prompt, type: <code>Z:</code> and hit enter, where Z was the drive letter you just created.</p>
+</li>
+<li>
+<p>Type <code>dir</code> to list directories on this mounted EFI partition</p>
+</li>
+<li>
+<p>If you are in the right place, you should see a directory called EFI</p>
+</li>
+<li>
+<p>Type <code>cd EFI</code> and then dir to list the child directories inside EFI</p>
+</li>
+<li>
+<p>Type <code>rmdir /S ubuntu</code> to delete the ubuntu boot directory</p>
+</li>
+</ul>
+
+    <p>
+        <span class="tag">windows linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/windows$linux.html">Back</a>
+    </p>
+</body>
+</html>

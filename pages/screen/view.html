@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>screen</title>
+</head>
+<body>
+    <h1>screen</h1>
+    <p>Create a new screen session without welcome screen</p>
+<pre><code>screen -q
+</code></pre>
+<p>List screens</p>
+<pre><code>screen -ls
+</code></pre>
+<p>Detach screen</p>
+<pre><code>[CTRL+a] d
+</code></pre>
+<p>Re-attach a screen</p>
+<pre><code>screen -r
+</code></pre>
+<p>Quit</p>
+<pre><code>screen -XS {screen number} quit
+</code></pre>
+<p>Start screen, execute a command and detach</p>
+<pre><code>screen -dm /bin/bash -c &quot;/path/to/anycommand.sh&quot;
+</code></pre>
+<p>Name a session</p>
+<pre><code>[CTRL+a] : sessionname {name}
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>udisksctl</title>
+</head>
+<body>
+    <h1>udisksctl</h1>
+    <p>This utility helps to mount disk drives without root.</p>
+<pre><code>udisksctl mount -b /dev/sda{n}
+
+# To identify by UUID
+
+udisksctl mount -b /dev/disk/by-uuid/{UUID}
+
+</code></pre>
+<p>You can set a predefined UUID to a drive using <a href="../tune2fs/view.html">tune2fs</a></p>
+
+    <p>
+        <span class="tag">linux command disks</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$disks.html">Back</a>
+    </p>
+</body>
+</html>

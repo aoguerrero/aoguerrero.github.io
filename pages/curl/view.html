@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>curl</title>
+</head>
+<body>
+    <h1>curl</h1>
+    <pre><code>curl -d '{&quot;key&quot;: &quot;value&quot;}' -X POST -H 'Content-Type: application/json' http://localhost:8080/post
+</code></pre>
+<p>To send the content of a file:</p>
+<pre><code>-d @filename.json 
+</code></pre>
+<p>To accept a JSON response (a GET request i.e.):</p>
+<pre><code>-H 'Accept: application/json'
+</code></pre>
+<p>To post an HTML form:</p>
+<pre><code>-H &quot;Content-Type: application/x-www-form-urlencoded&quot; 
+-d &quot;param1=value1&amp;param2=value2&quot;
+</code></pre>
+<p>Ignore SSL errors:</p>
+<pre><code>-k
+</code></pre>
+<p>To authenticate basic HTTP:</p>
+<pre><code>-u &quot;login:password&quot;
+</code></pre>
+<p>To download a file:</p>
+<pre><code>-o filename.txt
+</code></pre>
+<p><strong>Windows Notes:</strong></p>
+<p>Download curl binary from: <a href="https://curl.se/windows/dl-8.12.1_4/curl-8.12.1_4-win64-mingw.zip">https://curl.se/windows/dl-8.12.1_4/curl-8.12.1_4-win64-mingw.zip</a></p>
+<p>Rename (to <code>_curl.exe</code>), because PowerShell has a <code>curl</code> command, and escape JSON surronding with <code>'..'</code> and using <code>\&quot;...\&quot;</code> in fields and values, example:</p>
+<pre><code>_curl -H 'Content-Type: application/json' -d '{\&quot;id\&quot;: \&quot;1\&quot;, \&quot;firstName\&quot;: \&quot;Andres\&quot;, \&quot;lastName\&quot;: \&quot;Guerrero\&quot;}' -X POST http://localhost:8080/employees
+
+</code></pre>
+
+    <p>
+        <span class="tag">linux command</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command.html">Back</a>
+    </p>
+</body>
+</html>

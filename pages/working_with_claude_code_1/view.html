@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Working with Claude Code: 1. Start a New Project</title>
+</head>
+<body>
+    <h1>Working with Claude Code: 1. Start a New Project</h1>
+    <h3>Prerequisites</h3>
+<p>Before you start, make sure you have Claude Code installed and authenticated. (If you haven't done this, you typically install it via npm: <code>npm install -g @anthropic-ai/claude-code</code>, and then run <code>claude</code> to log in).</p>
+<hr />
+<h3>Step 1: Create and navigate to your project folder</h3>
+<p>Claude Code works best when you run it inside the root directory of your project. Open your terminal and create a new folder:</p>
+<pre><code class="language-bash">mkdir my-new-project
+cd my-new-project
+</code></pre>
+<h3>Step 2: Initialize Git (Highly Recommended)</h3>
+<p>Claude Code is highly aware of your Git status. It uses Git to track the changes it makes, allowing you to easily review its work and revert if it breaks something.</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<h3>Step 3: Launch Claude Code</h3>
+<p>Now that you are in your empty project folder, launch the Claude Code interface:</p>
+<pre><code class="language-bash">claude
+</code></pre>
+<p><em>(Note: If this is your first time running it in this directory, it may ask you to confirm that you trust this folder. Type <code>y</code> and hit enter).</em></p>
+<h3>Step 4: Give Claude the Initial Prompt</h3>
+<p>Since the folder is empty, you need to tell Claude what you want to build. A good starting prompt should include:</p>
+<ol>
+<li>The <strong>tech stack</strong> you want to use.</li>
+<li>The <strong>goal</strong> of the project.</li>
+<li>A request to <strong>scaffold/initialize</strong> the project.</li>
+</ol>
+<p><strong>Example Prompt:</strong></p>
+<blockquote>
+<p>&quot;I want to start a new project. It's going to be a simple web scraper using Python, BeautifulSoup, and requests. Please initialize the project structure, create a virtual environment, create a <code>requirements.txt</code>, and make a basic <code>main.py</code> file with a template for scraping a URL.&quot;</p>
+</blockquote>
+<h3>Step 5: Review and Approve Actions</h3>
+<p>Claude Code is <em>agentic</em>, meaning it doesn't just write text; it proposes actions. When you hit enter on your prompt, Claude will think and then propose a plan.</p>
+<p>It might say something like:</p>
+<ul>
+<li>&quot;I will run <code>python -m venv venv</code>&quot;</li>
+<li>&quot;I will create <code>requirements.txt</code>&quot;</li>
+<li>&quot;I will create <code>main.py</code> with the following code...&quot;</li>
+</ul>
+<p>It will ask for your permission before executing commands or writing files. You can press:</p>
+<ul>
+<li><strong>Enter</strong> to approve.</li>
+<li><strong>Esc</strong> to cancel.</li>
+<li><strong>e</strong> to edit the proposed command/file yourself before it runs.</li>
+</ul>
+<h3>Step 6: Add a <code>CLAUDE.md</code> file (Best Practice)</h3>
+<p>Once Claude has scaffolded the basic project, a great next step is to ask it to create a <code>CLAUDE.md</code> file in the root directory.</p>
+<p><strong>Why?</strong> Claude Code automatically reads <code>CLAUDE.md</code> every time it starts up in that directory. It acts as a long-term memory and project guideline.</p>
+<p><strong>Example Prompt:</strong></p>
+<blockquote>
+<p>&quot;Now that the project is set up, please create a <code>CLAUDE.md</code> file in the root directory. In it, document the tech stack we are using, the project structure, and instructions on how to run the code and install dependencies.&quot;</p>
+</blockquote>
+<hr />
+<h3>Summary of the Workflow</h3>
+<ol>
+<li><code>mkdir project &amp;&amp; cd project</code></li>
+<li><code>git init</code></li>
+<li><code>claude</code></li>
+<li><em>&quot;Scaffold a project using [Tech Stack] that does [Goal].&quot;</em></li>
+<li>Approve the files/commands Claude generates.</li>
+<li>Continue iterating by asking it to add features, fix bugs, or write tests.</li>
+</ol>
+
+    <p>
+        <span class="tag">ai</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/ai.html">Back</a>
+    </p>
+</body>
+</html>

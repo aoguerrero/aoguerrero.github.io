@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Update hosts file for ad-blocking</title>
+</head>
+<body>
+    <h1>Update hosts file for ad-blocking</h1>
+    <pre><code>cd /etc
+sudo mv hosts hosts.bak
+sudo wget https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+</code></pre>
+<p>Restart Network Manager to apply changes</p>
+<pre><code>sudo systemctl restart NetworkManager.service
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>rclone</title>
+</head>
+<body>
+    <h1>rclone</h1>
+    <p>Mount a remote filesystem locally</p>
+<pre><code>rclone mount &quot;remote&quot;:/path /target/ --vfs-cache-mode full --drive-skip-gdocs
+</code></pre>
+<p>Dependency <code>fuse3</code> is needed.</p>
+<p>The remote can be mounted also with <code>--read-ony</code> instead of <code>--vfs-cache-mode full</code></p>
+<p>Example bashrc:</p>
+<pre><code>alias mgdrive='rclone mount gdrive:/ /home/andresguerrero/Documents --vfs-cache-mode full --drive-skip-gdocs&amp;&gt;
+/dev/null&amp;'
+</code></pre>
+<p>Unmount filesystem</p>
+<pre><code>fusermount -u /target/
+</code></pre>
+<h1>Windows</h1>
+<p>To mount drives in Windows, install:
+<a href="https://winfsp.dev/">https://winfsp.dev/</a></p>
+<pre><code>start /min rclone mount gdrive:/ G: --vfs-cache-mode full --drive-skip-gdocs --volname gdrive --no-console
+</code></pre>
+<h1>macOS</h1>
+<p>Mount drive, add:</p>
+<pre><code>--no-unicode-normalization=false
+</code></pre>
+<h1>Libre Office</h1>
+<p>Libre Office creates ~lock* files, that causes errors in rclone, to avoid the creation of those files, go to Tools &gt; Options &gt; Libre Office &gt; Advanced &gt; Open Expert Conf.. &gt; Search UseLocking, and set to 'false'</p>
+<h1>Sync</h1>
+<p>Sync a local folder with a remote folder (WARNING: it overwrites everything).</p>
+<pre><code>rclone sync /local/directory alias: -P --fast-list --track-renames -v
+</code></pre>
+<p>Sample sync. crontab</p>
+<pre><code>crontab -e
+@reboot sleep 15s &amp;&amp; rclone mount --vfs-cache-mode full gdrive: /local/dir&amp;&gt;/dev/null&amp;
+</code></pre>
+<p>Sync example with gdrive</p>
+<pre><code>rclone sync --drive-skip-gdocs --cache-rps 25 --tpslimit 5 gdrive: /local/dir
+</code></pre>
+<h1>Other</h1>
+<p>Start web server</p>
+<pre><code># apache2-utils is required
+touch /path/to/file
+htpasswd -B /path/to/file user
+rclone serve http alias:/ --addr 127.0.0.1:1111 --htpasswd /path/to/file
+</code></pre>
+
+    <p>
+        <span class="tag">linux command disks</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$disks.html">Back</a>
+    </p>
+</body>
+</html>

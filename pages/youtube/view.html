@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Export Youtube Suscriptions</title>
+</head>
+<body>
+    <h1>Export Youtube Suscriptions</h1>
+    <ol>
+<li>
+<p>Enter: <a href="https://www.youtube.com/feed/channels">https://www.youtube.com/feed/channels</a></p>
+</li>
+<li>
+<p>Open Console, paste:</p>
+</li>
+</ol>
+<pre><code>function getLast() {
+  return ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents.slice(-1)[0];
+}
+
+function canContinue() { 
+  return getLast().continuationItemRenderer != null;
+}
+
+(async () =&gt; {
+  while (canContinue()) {
+    let current = getLast().continuationItemRenderer.continuationEndpoint.continuationCommand.token;
+    scrollTo(0, document.getElementById('primary').scrollHeight);
+    while (canContinue() &amp;&amp; current == getLast().continuationItemRenderer.continuationEndpoint.continuationCommand.token) {
+      await new Promise(r =&gt; setTimeout(r, 100));
+    }
+  }
+  
+  scrollTo(0, 0);
+  
+  const floatDiv = document.createElement('div');
+  const preText = document.createElement('pre');
+  floatDiv.setAttribute('style', `
+    position: fixed;
+    background: #0f0f0f;
+    z-index: 100000;
+    inset: 2rem;
+    overflow: auto;
+    font-size: 2rem;
+    white-space: pre;
+    color: white;
+    padding: 1rem;
+  `);
+
+  const channels = ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0]
+    .tabRenderer.content.sectionListRenderer.contents
+    .map(e =&gt; {
+      if (!e.itemSectionRenderer) return null;
+      return e.itemSectionRenderer.contents[0].shelfRenderer.content
+        .expandedShelfContentsRenderer.items;
+    })
+    .flat()
+    .filter(Boolean)
+    .map(e =&gt; {
+      if (!e.channelRenderer) return null;
+      return {
+        id: e.channelRenderer.channelId,
+        url: `http://www.youtube.com/channel/${e.channelRenderer.channelId}`,
+        title: e.channelRenderer.title.simpleText
+      };
+    })
+    .filter(Boolean);
+
+  const BOM = '\uFEFF';
+  const headers = ['Channel Id', 'Channel Url', 'Channel Title'];
+  const csvRows = [
+    headers.join(','),
+    ...channels.map(channel =&gt; 
+      [
+        channel.id,
+        channel.url,
+        // Properly escape title to handle commas and quotes
+        `&quot;${channel.title.replace(/&quot;/g, '&quot;&quot;')}&quot;`
+      ].join(',')
+    )
+  ];
+  
+  const csvContent = BOM + csvRows.join('\n');
+  preText.textContent = csvContent;
+
+  const downloadLink = document.createElement('a');
+  downloadLink.innerText = 'Download CSV (Unicode)';
+  downloadLink.setAttribute('target', '_blank');
+  downloadLink.setAttribute('style', `
+    color: #bf3838;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #bf3838;
+    width: fit-content;
+    text-decoration: none;
+  `);
+
+  const blob = new Blob([csvContent], { 
+    type: 'text/csv;charset=utf-8'
+  });
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = 'youtube_subscriptions.csv';
+
+  floatDiv.appendChild(downloadLink);
+  floatDiv.appendChild(preText);
+  document.body.appendChild(floatDiv);
+})();
+</code></pre>
+<p>OR</p>
+<p>Create a bookmark with this URL:</p>
+<pre><code>javascript:(()=&gt;{function getLast(){return ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents.slice(-1)[0]}function canContinue(){return null!=getLast().continuationItemRenderer}(async()=&gt;{for(;canContinue();){let e=getLast().continuationItemRenderer.continuationEndpoint.continuationCommand.token;for(scrollTo(0,document.getElementById(&quot;primary&quot;).scrollHeight);canContinue()&amp;&amp;e==getLast().continuationItemRenderer.continuationEndpoint.continuationCommand.token;)await new Promise((e=&gt;setTimeout(e,100)))}scrollTo(0,0);const e=document.createElement(&quot;div&quot;),n=document.createElement(&quot;pre&quot;);e.setAttribute(&quot;style&quot;,&quot;\n    position: fixed;\n    background: #0f0f0f;\n%20%20%20%20z-index:%20100000;\n%20%20%20%20inset:%202rem;\n%20%20%20%20overflow:%20auto;\n%20%20%20%20font-size:%202rem;\n%20%20%20%20white-space:%20pre;\n%20%20%20%20color:%20white;\n%20%20%20%20padding:%201rem;\n%20%20%22);const%20t=ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents.map((e=%3Ee.itemSectionRenderer?e.itemSectionRenderer.contents[0].shelfRenderer.content.expandedShelfContentsRenderer.items:null)).flat().filter(Boolean).map((e=%3Ee.channelRenderer?{id:e.channelRenderer.channelId,url:%60http://www.youtube.com/channel/${e.channelRenderer.channelId}%60,title:e.channelRenderer.title.simpleText}:null)).filter(Boolean),o=%22\ufeff%22+[[%22Channel%20Id%22,%22Channel%20Url%22,%22Channel%20Title%22].join(%22,%22),...t.map((e=%3E[e.id,e.url,%60%22${e.title.replace(/%22/g,'%22%22')}%22%60].join(%22,%22)))].join(%22\n%22);n.textContent=o;const%20r=document.createElement(%22a%22);r.innerText=%22Download%20CSV%20(Unicode)%22,r.setAttribute(%22target%22,%22_blank%22),r.setAttribute(%22style%22,%22\n%20%20%20%20color:%20#bf3838;\n%20%20%20%20font-weight:%20bold;\n%20%20%20%20margin-bottom:%201rem;\n%20%20%20%20display:%20block;\n%20%20%20%20padding:%201rem;\n%20%20%20%20border-radius:%200.5rem;\n%20%20%20%20border:%202px%20solid%20#bf3838;\n%20%20%20%20width:%20fit-content;\n%20%20%20%20text-decoration:%20none;\n%20%20%22);const%20i=new%20Blob([o],{type:%22text/csv;charset=utf-8%22});r.href=URL.createObjectURL(i),r.download=%22youtube_subscriptions.csv%22,e.appendChild(r),e.appendChild(n),document.body.appendChild(e)})()})();
+</code></pre>
+<ol start="3">
+<li>Import to NewPipe :-)</li>
+</ol>
+<p>Source: <a href="https://gist.github.com/hoony0203/2007684ccf30c2075c25d457014fad9f">https://gist.github.com/hoony0203/2007684ccf30c2075c25d457014fad9f</a></p>
+
+    <p>
+        <span class="tag">music</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/music.html">Back</a>
+    </p>
+</body>
+</html>

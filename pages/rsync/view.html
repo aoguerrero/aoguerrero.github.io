@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>rsync</title>
+</head>
+<body>
+    <h1>rsync</h1>
+    <p>Copy files preserving all the permissions, ownership, etc. and show a progress percentage</p>
+<pre><code>rsync -av --progress source/ target/
+</code></pre>
+<p>To remote with daemon runing:</p>
+<pre><code>rsync -av --progress source rsync://user@host/base/
+</code></pre>
+<p>Configure base module in <code>/etc/rsyncd.conf</code> with:</p>
+<pre><code>[base]
+path=/home/user/rsync
+read only = no
+</code></pre>
+<p>Other options:</p>
+<p><code>--tpslimit {}</code> Set a limit of transactons per seconds (Example: 5)</p>
+
+    <p>
+        <span class="tag">linux command disks</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$disks.html">Back</a>
+    </p>
+</body>
+</html>

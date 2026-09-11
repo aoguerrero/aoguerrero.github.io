@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Possible fix for kernel update error (Debian)</title>
+</head>
+<body>
+    <h1>Possible fix for kernel update error (Debian)</h1>
+    <p>List modules</p>
+<pre><code>sudo dkms status
+</code></pre>
+<p>Remove all (use the first part of the result, including the complete version)</p>
+<pre><code>sudo dkms remove {} --all
+</code></pre>
+<p>Update, Upgrade</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+<p>Restart</p>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

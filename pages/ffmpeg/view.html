@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>ffmpeg</title>
+</head>
+<body>
+    <h1>ffmpeg</h1>
+    <ul>
+<li>
+<p>Remove the first seconds (15 seconds in the example) of an audio file, without re-encoding, useful to remove silences at the beginning</p>
+<pre><code>ffmpeg -ss 00:00:15 -i {input} -c:a copy {output}
+</code></pre>
+</li>
+<li>
+<p>Convert m4a (or other format) to mp3. It's a bad idea, unless the input is flac or you need the file in mp3 for an old hardware player.</p>
+<pre><code>ffmpeg -i {input}.m4a -b:a 192K -vn {output}.mp3
+</code></pre>
+</li>
+<li>
+<p>Tag Music using ffmpeg</p>
+<p>This Script modifies the file metadata taking three arguments: input filename, artist and title.</p>
+<p><code>tag.sh</code></p>
+<pre><code>#!/bin/bash
+ffmpeg -i &quot;$1&quot; -map_metadata -1 -c copy &quot;$1_.opus&quot;
+rm &quot;$1&quot;
+ffmpeg -i &quot;$1_.opus&quot; -metadata artist=&quot;$2&quot; -metadata title=&quot;$3&quot; -c copy &quot;$2 - $3.opus&quot;
+rm &quot;$1_.opus&quot;
+</code></pre>
+<p>Example:</p>
+<pre><code>tag.sh &quot;The Beatles - Yesterday.mp3&quot; &quot;The Beatles&quot; &quot;Yesterday&quot;
+</code></pre>
+</li>
+<li>
+<p>Convert files in recursive directories</p>
+<pre><code>find . -type f -iname '*.opus' | xargs -I{} env i='{}' bash -c 'ffmpeg -i &quot;$i&quot; -vn &quot;${i%.*}.flac&quot;'
+</code></pre>
+</li>
+</ul>
+
+    <p>
+        <span class="tag">linux command music</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$command$music.html">Back</a>
+    </p>
+</body>
+</html>

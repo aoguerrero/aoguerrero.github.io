@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Spring - Bypass Security for specific path</title>
+</head>
+<body>
+    <h1>Spring - Bypass Security for specific path</h1>
+    <pre><code>
+@RestController
+@RequestMapping(&quot;/foo&quot;)
+public class Foo {
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -&gt; web.ignoring().requestMatchers(&quot;/specimen/**&quot;);
+    }
+
+    @PostMapping(&quot;/post&quot;)
+    public Result post(@RequestBody Payload payload) {
+        ...
+    }
+
+    @GetMapping(&quot;/get&quot;)
+    public Result get(@RequestParam String id) {
+       ...
+    }
+
+    @GetMapping(&quot;/otherget/{id}&quot;)
+    public Result otherget(@PathVariable id) {
+       ...
+    }
+
+}
+</code></pre>
+
+    <p>
+        <span class="tag">java</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/java.html">Back</a>
+    </p>
+</body>
+</html>

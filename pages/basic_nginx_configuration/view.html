@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Basic Nginx Configuration</title>
+</head>
+<body>
+    <h1>Basic Nginx Configuration</h1>
+    <h2>Fix permissions</h2>
+<h3>Add user to www-data group</h3>
+<pre><code>sudo usermod -a -G www-data {}
+</code></pre>
+<h3>Check that www-data has the correct permissions</h3>
+<pre><code>Directory 775
+Files     664
+</code></pre>
+<p>Review www-data access to files</p>
+<pre><code>sudo -u www-data namei /path/to/file.html
+</code></pre>
+<h3>Nginx Configuration</h3>
+<p>File location <code>/etc/nginx/sites-enabled/default</code></p>
+<pre><code>server {
+  listen 80;
+  listen [::]:80;
+  server_name {domain one};
+  location / {
+    proxy_set_header   X-Forwarded-For $remote_addr;
+    proxy_set_header   Host $http_host;
+    proxy_pass         &quot;http://127.0.0.1:8080&quot;;
+  }
+}
+server {
+  listen 80;
+  listen [::]:80;
+  server_name {domain two};
+  location / {
+    root /path/to/files/;
+    try_files $uri /index.html;
+  }
+}
+
+</code></pre>
+<p>Example with SSL:</p>
+<pre><code>server {
+  listen 443 ssl;
+  server_name {domain};
+  ssl_certificate /etc/letsencrypt/live/{domain}/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/{domain}/privkey.pem;
+  location / {
+    proxy_set_header   X-Forwarded-For $remote_addr;
+    proxy_set_header   Host $http_host;
+    proxy_pass         &quot;http://127.0.0.1:8080&quot;;
+  }
+}
+</code></pre>
+
+    <p>
+        <span class="tag">linux</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux.html">Back</a>
+    </p>
+</body>
+</html>

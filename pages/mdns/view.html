@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>mDNS</title>
+</head>
+<body>
+    <h1>mDNS</h1>
+    <p>Install Avahi</p>
+<pre><code>sudo apt install avahi-daemon
+</code></pre>
+<p>Start and enable the service</p>
+<pre><code>sudo systemctl enable --now avahi-daemon
+</code></pre>
+<p>The hostname defined on <code>/etc/hostname</code> will be available in the local network using the <code>.local</code> extension.</p>
+<p>After applying changes in the hostname:</p>
+<pre><code>sudo systemctl restart systemd-hostnamed
+</code></pre>
+<h3>Troubleshooting</h3>
+<p>If the output of <code>resolvectl status</code> is <code>-mDNS</code> instead of <code>+mDNS</code>, modify <code>/etc/systemd/resolved.conf</code> and add:</p>
+<pre><code>[Resolve]
+MulticastDNS=yes
+LLMNR=yes
+</code></pre>
+<p>Restart the service <code>sudo systemctl restart systemd-resolved</code> and check again <code>resolvectl status</code></p>
+<p>Check the firewall configuration: <code>sudo firewall-cmd --permanent --add-service=mdns</code></p>
+
+    <p>
+        <span class="tag">linux net</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/linux$net.html">Back</a>
+    </p>
+</body>
+</html>
