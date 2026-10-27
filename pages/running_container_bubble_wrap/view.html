@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../files/index.html%3Fpath=style.css">
+    <title>Running Container + Bubble Wrap</title>
+</head>
+<body>
+    <h1>Running Container + Bubble Wrap</h1>
+    <p>Manage the Container</p>
+<pre><code>
+container system start/stop/status
+</code></pre>
+<p>Start a machine container</p>
+<pre><code>container machine set --home-mount rw(default)/ro/none {machine-name}
+container machine run -n {machine-name}
+container machine stop {machine-name}
+</code></pre>
+<p>Example of Pi Sandboxing</p>
+<pre><code>function ,sandbox() {
+  bwrap \
+    --ro-bind / / \
+    --bind &quot;$PWD&quot; &quot;$PWD&quot; \
+    --bind &quot;$HOME/.pi/&quot; &quot;$HOME/.pi/&quot; \
+    --bind &quot;/tmp&quot; &quot;/tmp&quot; \
+    --chdir &quot;$PWD&quot; \
+    --share-net \
+    --dev /dev \
+    --proc /proc \
+    --die-with-parent \
+    --setenv PS1 &quot;sandbox:\w\$ &quot; \
+    bash --norc
+}
+</code></pre>
+<p>Start Pi (disabling built-in clipboard handler)</p>
+<pre><code>pi --tui-mode regular
+</code></pre>
+<p>Configure Z.ai key</p>
+<pre><code>export ZAI_API_KEY={key}
+</code></pre>
+
+    <p>
+        <span class="tag">macos</span> 
+    </p>
+    <p>
+        <a class="btn" href="../list/macos.html">Back</a>
+    </p>
+</body>
+</html>
